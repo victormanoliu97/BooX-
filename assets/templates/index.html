@@ -5,16 +5,34 @@
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../styles/index-style.css">
-    <script src="../scripts/index-show-slides.js"></script>
 </head>
 <body>
 
 <div class="header">
-    <a href="#" class="logo">BooX</a>
+    <a href="index.html" class="logo">BooX</a>
     <div class="header-right">
         <a class="active" href="#meet">Meet the Developers</a>
         <a class="active" href="#contact">Contact</a>
-        <a class="active" href="#login">Login</a>
+        <a class="active" href="#login" onclick="document.getElementById('id01').style.display='block'">Login</a>
+
+        <!-- The login form -->
+        <div id="id01" class="modal">
+            <!-- Login Form Content -->
+            <form class="modal-content animate">
+                <div class="form-container">
+                    <button type="button" class="facebook-login"><img src="../images/facebook-login.png" height="25"
+                                                                      width="25"/>Login with Facebook
+                    </button>
+                    <button type="button" class="google-login"><img src="../images/google-login.png" height="25"
+                                                                    width="25"/>Login with Google
+                    </button>
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                            class="cancelbtn">Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+
     </div>
 </div>
 
