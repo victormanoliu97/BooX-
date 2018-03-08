@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src = "../scripts/isoLanguages.js"></script>
+    <script src = "../scripts/genreList.js"></script>
+    <script>
+        console.log(languages)
+         $(function() {
+            $( "#languages" ).autocomplete({
+               source: languages
+            });
+            $( "#genres" ).autocomplete({
+               source: genres
+            });
+         });
+      </script>
+    <link rel="stylesheet" type="text/css" href="../styles/submitOfferStyle.css">
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>Submit a book</title>
+</head>
+<body>
+    <table class="bookOfferContainer" id="{bookOfferID}">
+        <tr >
+            <td colspan="2" class="submitButton"><h3>Book Information</h1></td>
+        </tr>
+        <tr>
+            <td class="sidePanel">Author</td>
+            <td class="form"><input type="text" class="textInput"></td>
+        </tr>
+        <tr>
+            <td class="sidePanel">Title</td>
+            <td class="form"><input type="text" class="textInput"></td>
+        </tr>
+        <tr>
+            <td class="sidePanel">ISBN</td>
+            <td class="form"><input type="number" class="textInput"></td>
+        </tr>
+        <tr>
+            <td class="sidePanel">Genres</td>
+            <td class="form">
+                <input class="textInput" id="genres">
+                <div class="offerIcon" style="width:2em;padding: 5px;margin-left: 10px;text-align: center;border-radius: 10px;"><i class="fa fa-plus-circle"></i></div>
+                <p style="font-size: 1.25em; margin-top: 2px; margin-bottom: 2px; padding-left: 10px;" id="selectedGenres">Selected Genres:</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="sidePanel"><label for="language">Language</td>
+            <td class="form"><input class="textInput" id="languages"></td>
+        </tr>
+        <tr>
+            <td class="sidePanel">Photo</td>
+            <td class="form"><input type="button"></td>
+        </tr>
+        <tr >
+            <td colspan="2" class="submitButton"><h3>Offer Information</h1></td>
+        </tr>
+        <tr>
+            <td class="sidePanel">Interested In the following books</td>
+            <td class="form">
+                <input class="textInput" id="genres">
+                <div class="offerIcon" style="width:2em;padding: 5px;margin-left: 10px;text-align: center;border-radius: 10px;"><i class="fa fa-plus-circle"></i></div>
+                <p style="font-size: 1.25em; margin-top: 2px; margin-bottom: 2px; padding-left: 10px;" id="selectedGenres">Selected Books:</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="sidePanel">Interested In the following genres</td>
+            <td class="form">
+                <input class="textInput" id="genres">
+                <div class="offerIcon" style="width:2em;padding: 5px;margin-left: 10px;text-align: center;border-radius: 10px;"><i class="fa fa-plus-circle"></i></div>
+                <p style="font-size: 1.25em; margin-top: 2px; margin-bottom: 2px; padding-left: 10px;" id="selectedGenres">Selected Genres:</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="sidePanel">Expiration Date</td>
+            <td class="form"><input type="date" class="textInput" id="languages"></td>
+        </tr>
+        <tr >
+            <td colspan="2" class="submitButton"><a href="user-panel.html"><div class="submitButton offerIcon"><i class="fa fa-check-circle"></i></div></a></td>
+        </tr>
+    </table>
+</body>
+</html>

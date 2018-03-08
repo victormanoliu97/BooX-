@@ -1,0 +1,73 @@
+body
+{
+    width: 100%;
+    height: 100%;
+    font-family: "Calibri", serif;
+    font-size: 1em;
+    margin: 0px;
+}
+h3
+{
+    background-color: rgba(216, 0, 50, 1);
+    font-size: 1.5em;
+    text-align:center;
+    margin: 0px;
+    border: 0px;
+}
+.bookOfferContainer
+{
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+td
+{
+    padding: 0px;
+}
+.sidePanel
+{
+    height: 100%;
+    width: 20%;
+    background-color: rgba(43, 45, 66, 1);
+    color: rgba(216, 0, 50, 1);
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 1.25em;
+    padding-top: 0em;
+}
+.form
+{
+    height: 100%;
+    width: 80%;
+    background-color: rgba(141, 153, 174, 1);
+    font-size: 1em;
+    color: rgba(216, 0, 50, 1);
+    padding-right: 1em;
+}
+.textInput
+{
+    width: 20em;
+    background-color: rgba(237, 242, 244, 1);
+    border: 2px solid red;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 0px;
+    font-size: 1.25em;
+}
+.submitButton
+{
+    font-size: 1.5em;
+    text-align:center;
+}
+.offerIcon
+{
+    border: 0px;
+    background-color: rgba(216, 0, 50, 1);
+    color: rgba(43, 45, 66, 1);
+    transition: all 0.2s;
+}
+.offerIcon:hover
+{
+    background-color: rgba(43, 45, 66, 1);
+    color: rgba(237, 242, 244, 1);
+}
