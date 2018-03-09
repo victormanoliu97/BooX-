@@ -61,7 +61,7 @@ body {
     z-index: 1;
     top: 0px;
     left: 0;
-    background-color: #111;
+    background-color: black;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -77,7 +77,7 @@ body {
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: dodgerblue;
 }
 
 .sidenav .closebtn {
@@ -94,7 +94,28 @@ body {
 }
 
 .openbtn {
-    font-size:30px;
+    font-size:25px;
     cursor:pointer;
     color:rgba(239, 35, 60, 1);
+}
+
+/* Search Bar */
+
+input[type=text] {
+    width:70%;
+    float:inside;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+}
+
+@media screen and(max-width: 850px) {
+    .search-bar {
+        float:none;
+        display:block;
+        text-align: left;
+        width:10%;
+    }
 }
