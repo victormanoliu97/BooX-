@@ -48,6 +48,10 @@ function createPopup(url) {
     return false;
 }
 
+function closePopup() {
+    window.close();
+}
+
 function init()
 {
     sidePanelHTML = document.getElementById("sidePanel").innerHTML;
