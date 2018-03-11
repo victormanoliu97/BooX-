@@ -1,0 +1,47 @@
+body
+{
+    font-family: "Calibri", serif;
+    width: 15em;
+    height: 12em;
+}
+.bookViewContainer
+{
+    width: 100%;
+    height: 100%;
+    background-color: ;
+    display: inline-grid;
+    grid-template-areas:
+            'image'
+            'info';
+    grid-template-rows: 70% 30%;
+
+}
+.bookViewInfo
+{
+    grid-area: info;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(43, 45, 66, 1);
+    color: rgba(237, 242, 244, 1);
+}
+.bookViewImage
+{
+    grid-area: image;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://cdn-images-1.medium.com/max/1024/1*OQXqTrTpXynrt85LeuaCnA.jpeg");
+    background-size: 100% 100%;
+}
+
+.bookViewAuthor
+{
+    margin: 0px;
+    padding-left: 0.4em;
+}
+.bookViewTitle
+{
+    margin: 0px;
+    font-size: 1.35em;
+    padding-top: 0.1em;
+    padding-left: 0.25em;
+}
