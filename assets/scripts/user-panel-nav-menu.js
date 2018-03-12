@@ -1,4 +1,5 @@
 var navOpen = false;
+var bookEntryLayout;
 var sidePanelHTML;
 function openNav(steps) {
     if (steps>=0)
@@ -48,8 +49,22 @@ function createPopup(url) {
     return false;
 }
 
+
 function init()
 {
     sidePanelHTML = document.getElementById("sidePanel").innerHTML;
     document.getElementById("sidePanel").innerHTML = "";
+    bookEntryLayout = document.getElementById("main").innerHTML;
+    document.getElementById("main").innerHTML = "";
+    console.log("a");
+    for (var i=0;i<30;i++)
+    {
+        var container = document.createElement("div");
+        container.style.width = "15em";
+        container.style.height = "12em";
+        container.style.margin = "auto";
+        container.style.padding = "0.5em";
+        container.innerHTML = bookEntryLayout;
+        document.getElementById("main").appendChild(container);
+    }
 }
