@@ -54,10 +54,6 @@ function init()
 {
     sidePanelHTML = document.getElementById("sidePanel").innerHTML;
     document.getElementById("sidePanel").innerHTML = "";
-<<<<<<< HEAD
-}
-
-=======
     bookEntryLayout = document.getElementById("main").innerHTML;
     document.getElementById("main").innerHTML = "";
     console.log("a");
@@ -72,4 +68,3 @@ function init()
         document.getElementById("main").appendChild(container);
     }
 }
->>>>>>> 0a77ccbcf50b45653a676cc48b6b9c17ac6489de

@@ -3,11 +3,9 @@
   <component name="dataSourceStorageLocal">
     <data-source name="mainDB" uuid="e9175854-eab2-4b84-bcf6-fc8011854c7b">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-      <introspection-schemas>*:TW</introspection-schemas>
     </data-source>
     <data-source name="main" uuid="92b4616d-0455-43e8-a69c-d06449472d7c">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-      <introspection-schemas>*:TW</introspection-schemas>
     </data-source>
   </component>
 </project>
