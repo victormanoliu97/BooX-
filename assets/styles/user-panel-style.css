@@ -6,7 +6,6 @@ Main Layout
 */
 body {
     margin: 0;
-    font-family: Arial;
     display: grid;
     grid-template-areas:
             'side header'
@@ -15,24 +14,27 @@ body {
     grid-gap: 0px;
     background-color: rgba(43, 45, 66, 1);
     grid-template-columns: 0em auto;
+    font-family: "Calibri", serif;
 
 }
 
-.header {
+#header {
     background-color: rgba(237, 242, 244, 1);
     padding: 20px 10px;
     grid-area: header;
     display: inline-grid;
     grid-template-areas:
             'button title search';
-    grid-template-columns: 3em 6em auto;
+    grid-template-columns: 4em 7em auto;
 }
-.main {
+#main {
     background-color: rgba(237, 242, 244, 1);
     padding: 20px 10px;
     grid-area: main;
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto;
 }
-.footer {
+#footer {
     background-color: rgba(237, 242, 244, 1);
     padding-top: 1em;
     padding-left: 1em;
@@ -43,7 +45,7 @@ body {
     grid-template-columns: auto 14em;
 }
 
-.side {
+#sidePanel {
     height: 100%;
     width: 100%;
     background-color: rgba(43, 45, 66, 1);
@@ -78,6 +80,11 @@ Specific Elements
 General Elements
 
 */
+
+#sidePanelOpenButton
+{
+    color: rgba(43, 45, 66, 1)
+}
 
 .side a {
     padding: 8px 8px 8px 8px;
@@ -128,14 +135,23 @@ Other
 
 */
 
-@media screen and (max-width: 500px) {
-    .header a {
-        float: none;
-        display: block;
-        text-align: left;
+@media screen and (max-width: 1305px) {
+    #main {
+        grid-template-columns: auto auto auto auto;
     }
-
-    .header-right {
-        float: none;
+}
+@media screen and (max-width: 1045px) {
+    #main {
+        grid-template-columns: auto auto auto;
+    }
+}
+@media screen and (max-width: 785px) {
+    #main {
+        grid-template-columns: auto auto;
+    }
+}
+@media screen and (max-width: 525px) {
+    #main {
+        grid-template-columns: auto;
     }
 }
