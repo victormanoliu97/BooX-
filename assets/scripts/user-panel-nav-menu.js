@@ -57,3 +57,4 @@ function init()
     sidePanelHTML = document.getElementById("sidePanel").innerHTML;
     document.getElementById("sidePanel").innerHTML = "";
 }
+
