@@ -6,6 +6,6 @@ matches = re.findall(r'(.*) \xe2(.*)\n',text)
 jsonMatches = []
 for match in matches:
    jsonMatches.append(match[0])
-print jsonMatches
+# print jsonMatches
 with open("dump.json",'w') as file:
     file.write(json.dumps(jsonMatches))
