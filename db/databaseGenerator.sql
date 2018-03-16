@@ -14,7 +14,14 @@ create table BOOKS
 	AUTHOR VARCHAR2(256) not null,
 	ISBN VARCHAR2(13) not null,
 	ASSIGNED_GENRE_LIST NUMBER,
-	LANGUAGE VARCHAR2(32) not null
+	LANGUAGEID NUMBER not null
+)
+/
+create table LANGUAGES
+(
+	ID NUMBER not null
+		primary key,
+	LANGUAGE VARCHAR2(128) not null
 )
 /
 

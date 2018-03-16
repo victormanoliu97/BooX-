@@ -10,6 +10,10 @@ def sampleOracleConnection():
     cursor.execute(querystring)
     print(cursor)
 
+def buildAnything():
+    buildGenres()
+    buildLanguages()
+
 def buildGenres():
     genresFile = os.path.join(os.path.dirname(__file__),'genres.json')
     genres = []
@@ -19,7 +23,7 @@ def buildGenres():
         return None
 
 
-    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521')
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
     querystring = '''delete from genres'''
     cursor.execute(querystring)
@@ -30,13 +34,40 @@ def buildGenres():
     conn.commit()
 
 
+def buildLanguages():
+    languagesFile = os.path.join(os.path.dirname(__file__),'isoLanguages.json')
+    languagesDict = {}
+    with open(languagesFile,'r',encoding="utf8") as file:
+        languagesDict = json.load(file)
+    languages = []
+    print(languagesDict)
+    for language in languagesDict:
+        languages.append(languagesDict[language]['name'])
+
+    if len(languages)==0:
+        return None
+
+
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring = '''delete from languages'''
+    cursor.execute(querystring)
+    for i in range(0,len(languages)):
+        querystring = '''insert into languages values({id},'{genre}')'''.format(id=i+1,genre=languages[i])
+        print(querystring)
+        cursor.execute(querystring)
+    conn.commit()
+
+
 if __name__=='__main__':
     menu = consolemenu.ConsoleMenu("BooX", "Database Manager")
-    fastBuilder = consolemenu.items.MenuItem("Build Database In One Shot")
+    fastBuilder = consolemenu.items.FunctionItem("Build Database In One Shot",buildAnything)
     incrementalBuilderMenu = consolemenu.ConsoleMenu("Build the database step by step")
     incrementalGenres = consolemenu.items.FunctionItem('Build Genres Table',buildGenres)
+    incrementalLanguages = consolemenu.items.FunctionItem('Build Languages Table',buildLanguages)
     
     incrementalBuilderMenu.append_item(incrementalGenres)
+    incrementalBuilderMenu.append_item(incrementalLanguages)
 
     incrementalBuilder = consolemenu.items.SubmenuItem("Build Database incrementally", submenu=incrementalBuilderMenu)
 
