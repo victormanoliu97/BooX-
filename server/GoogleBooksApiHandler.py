@@ -12,6 +12,24 @@ from io import StringIO
 #         print(child)
 #     print(totalResults)
 
+def getInfoAboutBook(jquery):
+    information = {}
+    information['authors'] = jquery['volumeInfo']['authors']
+    information['title'] = jquery['subtitle']
+    isbnList = jquery['industryIdentifiers']
+    information['isbn13'] = None
+    information['isbn10'] = None
+    for entry in isbnList:
+        if entry['type']=='ISBN_13':
+            information['isbn13']=entry['identifier']
+        elif entry['type']=='ISBN_10':
+            information['isbn10']=entry['identifier']
+    information['smallImage'] = jquery['imageLinks']['smallThumbnail']
+    information['bigImage'] = jquery['imageLinks']['thumbnail']
+    information['language'] = jquery['language']
+    return information
+
+
 def searchForBookByISBN(isbn):
     ApiResponse = urllib.request.urlopen('https://www.googleapis.com/books/v1/volumes?&'+urllib.parse.urlencode({'q':'isbn:'+isbn})).read()
     jsonRoot = json.loads(ApiResponse)
@@ -27,5 +45,4 @@ def searchForBookByISBN(isbn):
         return jsonRoot['items']
 
 if __name__=='__main__':
-    # searchForBook("a song of ice and fire")
-    print(searchForBookByISBN("9780553897845"))
+    print(searchForBookByISBN("95092686410"))
