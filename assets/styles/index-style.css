@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: Arial;
+    background-color: rgba(43, 45, 66, 1);
 }
 
 .header {
@@ -32,7 +33,7 @@ body {
 }
 
 .header a.active {
-    background-color: dodgerblue;
+    background-color: rgba(216, 0, 50, 1);
     color: white;
 }
 
@@ -60,53 +61,100 @@ body {
     background-repeat: no-repeat;
 }
 
-
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px;
 }
 
-.facebook-login {
-    background-color: blue;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
+.loginButton {
+    box-sizing: border-box;
+    position: relative;
+    margin: 0.2em;
+    padding: 0 15px 0 46px;
     border: none;
-    cursor: pointer;
-    width: 100%;
+    text-align: center;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 0.2em;
+    font-size: 16px;
+    color: #FFF;
+    display: block;
+    width: 99.5%;
+    bottom:-6vw;
 }
 
-.google-login {
-    background-color: rgba(239, 35, 60, 1);;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+.loginButton:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 100%;
 }
 
-button:hover {
-    opacity: 0.8;
+.loginButton:focus {
+    outline: none;
+}
+
+.loginButton:active {
+    box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+}
+
+.loginButton-facebook {
+    background-color: #4C69BA;
+    background-image: linear-gradient(#4C69BA, #3B55A0);
+    text-shadow: 0 -1px 0 #354C8C;
+}
+
+.loginButton-facebook:before {
+    border-right: #364e92 1px solid;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+}
+
+.loginButton-facebook:hover,
+.loginButton-facebook:focus {
+    background-color: #5B7BD5;
+    background-image: linear-gradient(#5B7BD5, #4864B1);
+}
+
+.loginButton-google {
+    background: #DD4B39;
+}
+
+.loginButton-google:before {
+    border-right: #BB3F30 1px solid;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+}
+
+.loginButton-google:hover,
+.loginButton-google:focus {
+    background: #E74B37;
+}
+
+.form-container {
+    margin: auto;
 }
 
 .cancelbtn {
-    width: auto;
+    width: 100%;
     padding: 10px 18px;
     margin: 8px 0;
     border: none;
-    background-color: #f44336;
+    background-color: rgba(216, 0, 50, 1);
     color: white;
+    position:relative;
+    bottom:-10vw;
 }
 
 .imgcontainer {
@@ -115,18 +163,17 @@ button:hover {
     position: relative;
 }
 
-
 .container {
     padding: 16px;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    background-color: rgba(43, 45, 66, 1);
+    margin: 5% auto 15% auto;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
+    height: 36%;
 }
-
 
 /* Add Zoom Animation */
 .animate {
@@ -135,21 +182,30 @@ button:hover {
 }
 
 @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)}
-    to {-webkit-transform: scale(1)}
+    from {
+        -webkit-transform: scale(0)
+    }
+    to {
+        -webkit-transform: scale(1)
+    }
 }
 
 @keyframes animatezoom {
-    from {transform: scale(0)}
-    to {transform: scale(1)}
+    from {
+        transform: scale(0)
+    }
+    to {
+        transform: scale(1)
+    }
 }
 
-/* Change styles for span and cancel button on extra small screens */
+
 @media screen and (max-width: 300px) {
     span.psw {
         display: block;
         float: none;
     }
+
     .cancelbtn {
         width: 100%;
     }

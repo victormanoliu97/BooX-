@@ -5,7 +5,7 @@
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../styles/index-style.css">
-
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </head>
 <body>
 
@@ -21,12 +21,10 @@
             <!-- Login Form Content -->
             <form class="modal-content animate">
                 <div class="form-container">
-                    <button type="button" class="facebook-login"><img src="../images/facebook-login.png" height="25"
-                                                                      width="25"/>Login with Facebook
-                    </button>
-                    <button type="button" class="google-login"><img src="../images/google-login.png" height="25"
-                                                                    width="25"/>Login with Google
-                    </button>
+
+                    <button class="loginButton loginButton-facebook">Login With Facebook</button>
+                    <button class="loginButton loginButton-google">Login With Google</button>
+
                     <button type="button" onclick="document.getElementById('id01').style.display='none'"
                             class="cancelbtn">Cancel
                     </button>
@@ -42,6 +40,7 @@
 <div class="image-background">
     <img src="../images/img4.jpg" style="width: 100%"/>
 </div>
+
 
 </body>
 </html>
