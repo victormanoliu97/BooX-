@@ -1,0 +1,192 @@
+/* SIDEPANEL , SEARCHBAR , FOOTER AND A GENETIC BODY */
+
+body
+{
+    width: 100%;
+    height: 100%;
+    font-family: "Calibri", serif;
+    font-size: 1em;
+}
+
+#sidePanelOpenButton
+{
+    color: rgba(43, 45, 66, 1)
+}
+
+.side a {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 3em;
+    color: rgba(141, 153, 174, 1);
+    display: block;
+    transition: 0.3s;
+}
+
+.side a:hover {
+    color: rgba(216, 0, 50, 1);
+}
+
+
+input[type=text] {
+    width: 100%;
+    height: 3em;
+    float:inside;
+    box-sizing: border-box;
+    border: 2px solid rgba(141, 153, 174, 1);
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+}
+
+
+.button
+{
+    border-radius: 10px;
+    padding: 0.25em;
+    background-color: rgba(216, 0, 50, 1);
+    text-decoration: none;
+    color: rgba(43, 45, 66, 1);
+    transition: all 0.2s;
+}
+.button:hover
+{
+    background-color: rgba(43, 45, 66, 1);
+    color: rgba(237, 242, 244, 1);
+}
+
+
+/* TOP NAVBAR */
+
+
+.header {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 20px 10px;
+}
+
+.header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: rgba(216, 0, 50, 1);
+}
+
+.header a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.header a.active {
+    background-color: rgba(216, 0, 50, 1);
+    color: white;
+}
+
+.header-right {
+    float: right;
+}
+
+
+/* DROPDOWN SELECTOR TO CHOOSE DIFFERENT OPTIONS */
+
+
+.custom-select {
+    position: relative;
+    text-align: center;
+    top:80px;
+}
+
+.select-options {
+    display: block;
+}
+.custom-select select {
+    display: none;
+}
+
+.select-selected {
+    background-color: rgba(216, 0, 50, 1);
+}
+
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    /*border-color: #fff transparent transparent transparent; */
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+
+.select-items div,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    /**border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent; */
+    cursor: pointer;
+    user-select: none;
+}
+/*style items (options):*/
+.select-items {
+    position: absolute;
+    background-color: rgba(216, 0, 50, 1);
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+/*hide the items when the select box is closed:*/
+.select-hide {
+    display: none;
+}
+.select-items div:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* ZOOM ANIMATION */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {
+        -webkit-transform: scale(0)
+    }
+    to {
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes animatezoom {
+    from {
+        transform: scale(0)
+    }
+    to {
+        transform: scale(1)
+    }
+}
+
+
+
+
