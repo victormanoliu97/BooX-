@@ -24,7 +24,8 @@ body {
     grid-area: header;
     display: inline-grid;
     grid-template-areas:
-            'button title search';
+            'button title search'
+            'whitespace filterLabel filterContainer';
     grid-template-columns: 4em 7em auto;
 }
 #main {
@@ -65,6 +66,42 @@ Specific Elements
     color: rgba(216, 0, 50, 1);
     text-decoration: none;
     padding-top: 0.35em;
+}
+
+#filterContainer {
+    display: inline-grid;
+    grid-template-areas:
+            'genre language distance exchangeWith';
+    grid-template-columns: 25% 25% 25% 25%;
+}
+#filterGenre{
+    grid-area: genre;
+}
+#filterLanguage{
+    grid-area: language;
+}
+#filterDistance{
+    grid-area: distance;
+}
+#filterExchangeWith{
+    grid-area: exchangeWith;
+}
+#filterLabel{
+    color: rgba(216, 0, 50, 1);
+    font-style: oblique;
+    cursor: pointer;
+    transition: 0.25s all;
+}
+#filterLabel:hover{
+    color: rgba(43, 45, 66, 1);
+    transition: 0.25s all;
+}
+
+
+#distance {
+    width: 95%;
+    height: 3em;
+    padding-top: 1px;
 }
 
 #about

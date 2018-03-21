@@ -6,9 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../styles/user-panel-style.css">
     <link rel="stylesheet" href="../styles/bookView.css">
+    <link rel="stylesheet" href="../styles/general-style.css">
     <script src="../scripts/user-panel-nav-menu.js"></script>
     <script src="../scripts/ownAPIHandler.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    
+    <script src = "../scripts/isoLanguages.js"></script>
+    <script src = "../scripts/genreList.js"></script>
+    <script>
+        console.log(languages)
+        console.log(genres)
+         $(function() {
+            $( "#languages" ).autocomplete({
+               source: languages
+            });
+            $( "#genres" ).autocomplete({
+               source: genres
+            });
+         });
+      </script>
+
+      
+    <link href = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel = "stylesheet">
 </head>
 <body onload="init()">
 
@@ -23,6 +44,14 @@
     <a id="sidePanelOpenButton" style="padding: 0.2em;font-size: 2em" onclick="switchNav()"><i id="sidePanelButton" class="fas fa-arrow-circle-right"></i></a>
     <a id="logo" href="index.html">BooX</a>
      <input id="search-bar" type="text" placeholder="Search books">
+     <div></div>
+     <div><a id="filterLabel" onclick="switchFilters()">Show Filters</a></div>
+     <div id="filterContainer">
+            <div id="filterDistance"><p id="distanceLabel">Max Distance:</p><input type="range" oninput="updateDistanceFilter()" id="distance" min="10" max="500"> </div>
+            <div id="filterExchangeWith"><p>Exchange with:</p><input type="text" id="exchange"></div>
+            <div id="filterGenre"><p>Genre:</p><input type="text" id="genres"></div>
+            <div id="filterLanguage"><p>Language:</p><input type="text" id="languages"></div>
+     </div>
 </div>
 
 
