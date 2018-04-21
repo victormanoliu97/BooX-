@@ -8,6 +8,10 @@ try:
 except:
     Popen(['py','-m','pip','install','json'])
 try:
-    import console_menu
+    import consolemenu
 except:
     Popen(['py','-m','pip','install','console-menu'])
+try:
+    import oauth2client
+except:
+    Popen(['py','-m','pip','install','google-api-python-client'])
