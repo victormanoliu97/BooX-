@@ -17,25 +17,7 @@
     <div class="header-right">
         <a class="active" href="#meet">Meet the Developers</a>
         <a class="active" href="#contact">Contact</a>
-        <a class="active" href="#login" onclick="document.getElementById('id01').style.display='block'">Login</a>
-
-        <!-- The login form -->
-        <div id="id01" class="modal">
-            <!-- Login Form Content -->
-            <form class="modal-content animate">
-                <div class="form-container">
-
-                    <button class="loginButton loginButton-facebook">Login With Facebook</button>
-                    <div class="g-signin2" data-onsuccess="onGoogleSignIn"></div>
-
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                            class="cancelbtn">Cancel
-                    </button>
-
-                </div>
-            </form>
-        </div>
-
+        <div class="g-signin2 active" data-onsuccess="onGoogleSignIn"></div>
     </div>
 </div>
 

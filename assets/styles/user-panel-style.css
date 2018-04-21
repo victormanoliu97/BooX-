@@ -163,6 +163,14 @@ input[type=text] {
     background-color: rgba(43, 45, 66, 1);
     color: rgba(237, 242, 244, 1);
 }
+#profileImage
+{
+    background-size:cover;
+    padding: 8px 8px 8px 8px;
+    width: 3em;
+    height: 3em;
+    display: block;
+}
 
 
 

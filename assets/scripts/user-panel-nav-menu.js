@@ -82,6 +82,7 @@ function switchNav()
     else
     {
         document.getElementById("sidePanel").innerHTML = sidePanelHTML;
+        document.getElementById("profileImage").style.backgroundImage = profilePicture;
         document.getElementById("sidePanelButton").classList.remove("fa-arrow-circle-right");
         document.getElementById("sidePanelButton").classList.add("fa-arrow-circle-left");
         openNav(15);
@@ -106,6 +107,7 @@ function updateDistanceFilter()
 
 function init()
 {
+    onLoadGoogleAuthApi()
     sidePanelHTML = document.getElementById("sidePanel").innerHTML;
     document.getElementById("sidePanel").innerHTML = "";
     bookEntryLayout = document.getElementById("main").innerHTML;

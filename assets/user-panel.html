@@ -12,12 +12,15 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="scripts/login.js"></script>
+    <meta name="google-signin-client_id" content="582910134035-ork4qn6r5u724n516a1j0kjh35vlfofq.apps.googleusercontent.com">
     
     <script src = "scripts/isoLanguages.js"></script>
     <script src = "scripts/genreList.js"></script>
     <script>
-        console.log(languages)
-        console.log(genres)
          $(function() {
             $( "#languages" ).autocomplete({
                source: languages
@@ -34,10 +37,11 @@
 <body onload="init()">
 
 <div id="sidePanel" class="side">
+    <div id="profileImage"></a></div>
     <a href="#"><i class="fas fa-plus" onclick="return createPopup('submitBookForm.html')"></i></a>
     <a href="#"><i class="fas fa-chart-bar" onclick="return createPopup('getStatisticsForm.html')"></i></a>
     <a href="#"><i class="fas fa-map-marker-alt"></i></a>
-    <a href="#"><i class="fas fa-sign-out-alt"></i></a>
+    <a href="#" onclick="signOut()"><i class="fas fa-sign-out-alt"></i></a>
 </div>
 
 <div id="header">
