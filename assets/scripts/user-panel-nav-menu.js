@@ -76,6 +76,8 @@ function switchNav()
 {
     if(navOpen)
     {
+        document.getElementById("sidePanelButton").classList.remove("fa-arrow-circle-left");
+        document.getElementById("sidePanelButton").classList.add("fa-arrow-circle-right");
         closeNav(15);
         navOpen = false;
     }

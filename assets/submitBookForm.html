@@ -26,11 +26,12 @@
 <body>
     <table class="bookOfferContainer" id="{bookOfferID}">
         <tr >
-            <td colspan="2" class="submitButton"><h3>Book Information</h1></td>
+            <td colspan="3" class="submitButton"><h3>Book Information</h1></td>
         </tr>
         <tr>
             <td class="sidePanel">Author</td>
             <td class="form"><input type="text" class="textInput"></td>
+            <td rowspan="6" class="form" ><div class="uploadThumbnail" style="width: 15em; height: 15em;"></div></td>
         </tr>
         <tr>
             <td class="sidePanel">Title</td>
@@ -54,10 +55,10 @@
         </tr>
         <tr>
             <td class="sidePanel">Photo</td>
-            <td class="form"><input type="button"></td>
+            <td class="form"><button title="Upload">Upload</button></td>
         </tr>
         <tr >
-            <td colspan="2" class="submitButton"><h3>Offer Information</h1></td>
+            <td colspan="3" class="submitButton"><h3>Offer Information</h1></td>
         </tr>
         <tr>
             <td class="sidePanel">Interested In the following books</td>
@@ -80,7 +81,7 @@
             <td class="form"><input type="date" class="textInput" id="languages"></td>
         </tr>
         <tr >
-            <td colspan="2" class="submitButton"><a href="#"><div class="submitButton offerIcon"><i class="fa fa-check-circle" onclick="closePopup()"></i></div></a></td>
+            <td colspan="3" class="submitButton"><a href="#"><div class="submitButton offerIcon"><i class="fa fa-check-circle" onclick="closePopup()"></i></div></a></td>
         </tr>
     </table>
 </body>

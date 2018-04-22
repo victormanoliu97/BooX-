@@ -3,6 +3,7 @@ import urllib.request
 import urllib.parse
 import json
 from io import StringIO
+from pprint import pprint
 
 # def searchForBook(name):
 #     ApiResponse = urllib.request.urlopen('https://www.googleapis.com/books/v1/volumes?&'+urllib.parse.urlencode({'q':name})).read()
@@ -15,8 +16,8 @@ from io import StringIO
 def getInfoAboutBook(jquery):
     information = {}
     information['authors'] = jquery['volumeInfo']['authors']
-    information['title'] = jquery['subtitle']
-    isbnList = jquery['industryIdentifiers']
+    information['title'] = jquery['volumeInfo']['title']
+    isbnList = jquery['volumeInfo']['industryIdentifiers']
     information['isbn13'] = None
     information['isbn10'] = None
     for entry in isbnList:
@@ -24,9 +25,9 @@ def getInfoAboutBook(jquery):
             information['isbn13']=entry['identifier']
         elif entry['type']=='ISBN_10':
             information['isbn10']=entry['identifier']
-    information['smallImage'] = jquery['imageLinks']['smallThumbnail']
-    information['bigImage'] = jquery['imageLinks']['thumbnail']
-    information['language'] = jquery['language']
+    information['smallImage'] = jquery['volumeInfo']['imageLinks']['smallThumbnail']
+    information['bigImage'] = jquery['volumeInfo']['imageLinks']['thumbnail']
+    information['language'] = jquery['volumeInfo']['language']
     return information
 
 
@@ -36,13 +37,28 @@ def searchForBookByISBN(isbn):
     totalResults = jsonRoot['totalItems']
     if totalResults==0:
         print('invalid isbn')
-        return None
+        return (0,None)
     elif totalResults==1:
         print('found the right book')
-        return jsonRoot['items'][0]
+        return (1,jsonRoot['items'][0])
     else:
         print('found more books')
-        return jsonRoot['items']
+        return (len(jsonRoot['items']),jsonRoot['items'])
+
+def searchForBookByName(name):
+    ApiResponse = urllib.request.urlopen('https://www.googleapis.com/books/v1/volumes?&'+urllib.parse.urlencode({'q':'name:'+name})).read()
+    jsonRoot = json.loads(ApiResponse)
+    totalResults = jsonRoot['totalItems']
+    if totalResults==0:
+        print('invalid isbn')
+        return (0,None)
+    elif totalResults==1:
+        print('found the right book')
+        return (1,jsonRoot['items'][0])
+    else:
+        print('found more books')
+        return (len(jsonRoot['items']),jsonRoot['items'])
 
 if __name__=='__main__':
-    print(searchForBookByISBN("95092686410"))
+    pprint(getInfoAboutBook(searchForBookByISBN("9781119249429")))
+    # pprint(searchForBookByISBN("9781119249429"))
