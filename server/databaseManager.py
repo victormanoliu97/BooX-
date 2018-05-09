@@ -2,6 +2,7 @@ import cx_Oracle
 import json
 import os
 import consolemenu
+import languages
 def sampleOracleConnection():
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521')
     cursor = conn.cursor()
@@ -35,25 +36,17 @@ def buildGenres():
 
 
 def buildLanguages():
-    languagesFile = os.path.join(os.path.dirname(__file__),'isoLanguages.json')
-    languagesDict = {}
-    with open(languagesFile,'r',encoding="utf8") as file:
-        languagesDict = json.load(file)
-    languages = []
-    print(languagesDict)
-    for language in languagesDict:
-        languages.append(languagesDict[language]['name'])
-
-    if len(languages)==0:
-        return None
+    language = languages.getLanguages()
+    if language == None:
+        return
 
 
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
     querystring = '''delete from languages'''
     cursor.execute(querystring)
-    for i in range(0,len(languages)):
-        querystring = '''insert into languages values({id},'{genre}')'''.format(id=i+1,genre=languages[i])
+    for i in range(0,len(language)):
+        querystring = '''insert into languages values({id},'{genre}')'''.format(id=i+1,genre=language[i])
         print(querystring)
         cursor.execute(querystring)
     conn.commit()

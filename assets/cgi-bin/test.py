@@ -12,6 +12,9 @@ print("yeee boiiii\n\n")
 # pprint(GBooks.getInfoAboutBook(GBooks.searchForBookByISBN("9781119249429")))
 # print(GBooks.getInfoAboutBook(("9781119249429")))
 
+# Data validifier
+
+
 arguments = cgi.FieldStorage()
 currentSearchField = arguments['field'].value
 currentSearchValue = arguments['value'].value
