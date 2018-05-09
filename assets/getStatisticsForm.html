@@ -26,7 +26,6 @@
         </select>
     </div>
 
-        <div class="download-button"><a href="#"><i class="fas fa-arrow-alt-circle-down" onclick="closePopup()"></i></a></div>
 
     </div>
 
@@ -60,17 +59,19 @@
 
                 var userChoiceFormat = e.target.innerHTML;
 
-                $.ajax({
-                    method: 'POST',
-                    url : "cgi-bin/test.py",
-                    data :  { userChoiceFormat },
-                    succes: function() {
-                        alert("YEY");
-                    },
-                    error: function(xhr, textStatus, errorThrown) {
-                        alert("Some bad things happened " + xhr.responseText + " " + xhr.responseURL + " " + xhr.responseType)
-                    }
-            })
+            //     $.ajax({
+            //         method: 'POST',
+            //         url : "cgi-bin/reportsHandler.py",
+            //         data :  { format : userChoiceFormat },
+            //         succes: function() {
+            //             alert("YEY");
+            //         },
+            //         error: function(xhr, textStatus, errorThrown) {
+            //             alert("Some bad things happened " + xhr.responseText + " " + xhr.responseURL + " " + xhr.responseType)
+            //         }
+            // })
+
+            window.location.replace('cgi-bin/reportsHandler.py?format=' + userChoiceFormat.toLowerCase())
 
                 h = this.parentNode.previousSibling;
                 for (i = 0; i < s.length; i++) {
