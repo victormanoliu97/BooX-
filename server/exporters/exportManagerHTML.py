@@ -31,7 +31,7 @@ html_string = """
     </body>
 </html>"""
 
-f = open("report.html", 'w')
+f = open("../../assets/reports/report.html", 'w')
 f.write(html_string)
 f.close()
 

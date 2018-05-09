@@ -36,7 +36,7 @@ genresCount = getNumberOfGenres()
 languagesCount = getNumberOfLanguages()
 offersCount = getNumberOffers()
 
-genres = {str(getGenres())}
+genres = {str(getGenres()).replace('\\', ' ')}
 
 userReport.append(genresCount)
 userReport.append(languagesCount)

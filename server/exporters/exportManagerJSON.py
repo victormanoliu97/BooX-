@@ -6,17 +6,19 @@ import cx_Oracle
 from exportManager import getNumberOffers
 from exportManager import getNumberOfGenres
 from exportManager import getNumberOfLanguages
+from exportManager import userReport
 
 conn = cx_Oracle.connect('TW/TWBooX@localhost:1521')
 cursor = conn.cursor()
 
 jsonRaport = {}
-jsonRaport = {'numberOffers' : getNumberOffers(),
-             'numberOfGenres:' : getNumberOfGenres(),
-             'numbberOfLanguages' : getNumberOfLanguages()
+jsonRaport = {'Number of genres' : userReport[0],
+             'Number of languages:' : userReport[1],
+             'Number of offers' : userReport[2],
+             'Genres existing' : str(userReport[3])
              }
 
-with io.open('raportJson.json', 'w', encoding = 'utf8') as outfile:
+with io.open('../../assets/reports/report.json', 'w', encoding = 'utf8') as outfile:
     str_ = json.dumps(jsonRaport, 
                       indent=3, 
                       sort_keys=True, 

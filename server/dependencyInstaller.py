@@ -15,3 +15,7 @@ try:
     import oauth2client
 except:
     Popen(['py','-m','pip','install','google-api-python-client'])
+try:
+    import plotly as py 
+except:
+    Popen(['py','-m', 'pip', 'install', 'plotly'])
