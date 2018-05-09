@@ -15,19 +15,23 @@ from pprint import pprint
 
 def getInfoAboutBook(jquery):
     information = {}
-    information['authors'] = jquery['volumeInfo']['authors']
-    information['title'] = jquery['volumeInfo']['title']
-    isbnList = jquery['volumeInfo']['industryIdentifiers']
-    information['isbn13'] = None
-    information['isbn10'] = None
-    for entry in isbnList:
-        if entry['type']=='ISBN_13':
-            information['isbn13']=entry['identifier']
-        elif entry['type']=='ISBN_10':
-            information['isbn10']=entry['identifier']
-    information['smallImage'] = jquery['volumeInfo']['imageLinks']['smallThumbnail']
-    information['bigImage'] = jquery['volumeInfo']['imageLinks']['thumbnail']
-    information['language'] = jquery['volumeInfo']['language']
+    # information['author'] = jquery['volumeInfo']['authors']
+    # information['title'] = jquery['volumeInfo']['title']
+    try:
+        information['genres'] = jquery['volumeInfo']['categories']
+    except:
+        information['genres'] = ""
+    # isbnList = jquery['volumeInfo']['industryIdentifiers']
+    # information['isbn13'] = None
+    # information['isbn10'] = None
+    # for entry in isbnList:
+    #     if entry['type']=='ISBN_13':
+    #         information['isbn13']=entry['identifier']
+    #     elif entry['type']=='ISBN_10':
+    #         information['isbn10']=entry['identifier']
+    # information['smallImage'] = jquery['volumeInfo']['imageLinks']['smallThumbnail']
+    # information['bigImage'] = jquery['volumeInfo']['imageLinks']['thumbnail']
+    # information['language'] = jquery['volumeInfo']['language']
     return information
 
 
