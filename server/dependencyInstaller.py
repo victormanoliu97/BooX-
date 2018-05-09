@@ -19,3 +19,7 @@ try:
     import plotly as py 
 except:
     Popen(['py','-m', 'pip', 'install', 'plotly'])
+try:
+    from lxml import etree
+except:
+    Popen(['py','-m', 'pip', 'install', 'lxml'])
