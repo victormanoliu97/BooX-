@@ -3,10 +3,7 @@ import os
 import sys
 import cgi
 import re
-import cgitb; cgitb.enable() # Optional; for debugging only
-sys.path.append('../server')
-import GoogleBooksApiHandler as GBooks
-import languages as Lang
+import cgitb; cgitb.enable()
 from pprint import pprint
 
 def sendReport(format):
@@ -33,7 +30,7 @@ elif format=='json':
     sendReport('json')
 elif format=='xml':
     print("Content-Type: application/xml\r")
-    print('Content-Disposition: attachment; filename="report.xml"\r')
+    print('Content-Disposition: attachment; filename="report.xml"\r\n')
     sendReport('xml')
 else:
     print("Content-Type: text/html\n")

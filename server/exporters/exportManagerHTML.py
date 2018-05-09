@@ -18,5 +18,5 @@ data = [go.Bar(
 )]
 
 py.offline.plot(
-    data, filename='../../assets/reports/report.html'    
+    data, filename='../../assets/reports/report.html',auto_open=False
 )
