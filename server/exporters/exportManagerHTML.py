@@ -8,6 +8,7 @@ cursor = conn.cursor()
 from exportManager import getNumberOffers
 from exportManager import getNumberOfGenres
 from exportManager import getNumberOfLanguages
+from exportManager import userReport
 
 
 html_string = """
@@ -22,15 +23,17 @@ html_string = """
     <body>
         <h1>Reports so far for Offers, Languages and Genres </h1>
         <ul>
-        <li>Number of genres:""" + getNumberOfGenres() + """
-        <li>Number of languages:""" + getNumberOfLanguages() + """
-        <li>Number of offers:""" + getNumberOffers() + """
+        <li>Number of genres:""" + userReport[0] + """
+        <li>Number of languages:""" + userReport[1] + """
+        <li>Number of offers:""" + userReport[2] + """
+        <li>Genres existing:""" + str(userReport[3]) + """
+        <ul>
     </body>
 </html>"""
 
-f = open("reportHTML.html", 'w')
+f = open("report.html", 'w')
 f.write(html_string)
 f.close()
 
 import webbrowser
-webbrowser.open("reportHTML.html")
+webbrowser.open("report.html")
