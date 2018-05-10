@@ -3,3 +3,13 @@
 .idea/workspace.xml
 .idea/dataSources.local.xml
 assets/reports
+server/topicsUnifier.py
+server/nouns.txt
+server/topics.txt
+server/genresNo1.txt
+server/genresNo1.1.txt
+server/exporters/__pycache__/exportManager.cpython-36.pyc
+server/__pycache__/GoogleBooksApiHandler.cpython-36.pyc
+server/__pycache__/GoogleBooksApiHandler.cpython-36.pyc
+server/exporters/__pycache__/exportManager.cpython-36.pyc
+*.pyc
