@@ -15,23 +15,41 @@ from pprint import pprint
 
 def getInfoAboutBook(jquery):
     information = {}
-    # information['author'] = jquery['volumeInfo']['authors']
-    # information['title'] = jquery['volumeInfo']['title']
-    try:
+    if 'authors' in jquery['volumeInfo']:
+        information['author'] = jquery['volumeInfo']['authors']
+    else:
+        information['author'] = ''
+    if 'title' in jquery['volumeInfo']:
+        information['title'] = jquery['volumeInfo']['title']
+    else:
+        information['title'] = ''
+    if 'categories' in jquery['volumeInfo']:
         information['genres'] = jquery['volumeInfo']['categories']
-    except:
-        information['genres'] = ""
-    # isbnList = jquery['volumeInfo']['industryIdentifiers']
-    # information['isbn13'] = None
-    # information['isbn10'] = None
-    # for entry in isbnList:
-    #     if entry['type']=='ISBN_13':
-    #         information['isbn13']=entry['identifier']
-    #     elif entry['type']=='ISBN_10':
-    #         information['isbn10']=entry['identifier']
-    # information['smallImage'] = jquery['volumeInfo']['imageLinks']['smallThumbnail']
-    # information['bigImage'] = jquery['volumeInfo']['imageLinks']['thumbnail']
-    # information['language'] = jquery['volumeInfo']['language']
+    else:
+        information['genres'] = []
+    if 'industryIdentifiers' in jquery['volumeInfo']:
+        isbnList = jquery['volumeInfo']['industryIdentifiers']
+        information['isbn13'] = None
+        information['isbn10'] = None
+        for entry in isbnList:
+            if entry['type']=='ISBN_13':
+                information['isbn13']=entry['identifier']
+            elif entry['type']=='ISBN_10':
+                information['isbn10']=entry['identifier']
+    else:
+        information['industryIdentifiers'] = ''
+    if 'imageLinks' in jquery['volumeInfo']:
+        information['smallImage'] = jquery['volumeInfo']['imageLinks']['smallThumbnail']
+    else:
+        information['smallImage'] = ''
+    if 'imageLinks' in jquery['volumeInfo']:
+        information['bigImage'] = jquery['volumeInfo']['imageLinks']['thumbnail']
+    else:
+        information['bigImage'] = ''
+    if 'language' in jquery['volumeInfo']:
+        information['language'] = jquery['volumeInfo']['language']
+    else:
+        information['language'] = ''
     return information
 
 
