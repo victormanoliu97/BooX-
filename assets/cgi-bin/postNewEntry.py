@@ -95,7 +95,7 @@ if isbn!="":
     author = book['author']
     title = book['title']
     language = book['language']
-    thumbnail = book['bigImage']
+    thumbnail = book['smallImage']
 else:
     validateStandardTextField(author,'author')
     validateStandardTextField(title,'title')

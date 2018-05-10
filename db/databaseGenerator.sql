@@ -1,4 +1,4 @@
-create table GENRES
+create table TOPICS
 (
 	ID NUMBER not null
 		primary key,
@@ -13,7 +13,7 @@ create table BOOKS
 	TITLE VARCHAR2(256) not null,
 	AUTHOR VARCHAR2(256) not null,
 	ISBN VARCHAR2(13) not null,
-	ASSIGNED_GENRE_LIST NUMBER,
+	ASSIGNED_TOPIC_LIST NUMBER,
 	LANGUAGEID NUMBER not null
 )
 /
@@ -29,10 +29,10 @@ create unique index BOOKS_ISBN_UINDEX
 	on BOOKS (ISBN)
 /
 
-create table GENRE_LISTS
+create table TOPICS_LISTS
 (
 	BOOK_ID NUMBER not null,
-	GENRE_ID NUMBER not null
+	TOPIC_ID NUMBER not null
 )
 /
 
@@ -59,7 +59,7 @@ create table OFFERS
 	PROPOSER_ID NUMBER not null,
 	BOOK_ID_1 NUMBER not null,
 	INTERESTED_BOOK_LIST NUMBER,
-	INTERESTED_GENRE_LIST NUMBER,
+	INTERESTED_TOPIC_LIST NUMBER,
 	EXPIRATION_DATE DATE not null,
 	PROPOSEE_ID NUMBER not null,
 	BOOK_ID_2 NUMBER
