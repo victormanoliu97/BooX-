@@ -1,6 +1,7 @@
 function getUserGeoLocation() {
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(pos) {
+            $("#location-id").css('color', 'rgba(216, 0, 50, 1)');
             var userLatitude = pos.coords.latitude;
             var userLongitude = pos.coords.longitude;
             console.log("My test location is: " + userLongitude + " " + userLatitude);
