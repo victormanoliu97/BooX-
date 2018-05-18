@@ -12,8 +12,7 @@ create table BOOKS
 		primary key,
 	TITLE VARCHAR2(256) not null,
 	AUTHOR VARCHAR2(256) not null,
-	ISBN VARCHAR2(13) not null,
-	ASSIGNED_TOPIC_LIST NUMBER,
+	ISBN VARCHAR2(13),
 	LANGUAGEID NUMBER not null
 )
 /
@@ -29,9 +28,15 @@ create unique index BOOKS_ISBN_UINDEX
 	on BOOKS (ISBN)
 /
 
-create table TOPICS_LISTS
+create table TOPICS_BOOKS_LISTS
 (
 	BOOK_ID NUMBER not null,
+	TOPIC_ID NUMBER not null
+)
+/
+create table TOPICS_INTERSTED_LISTS
+(
+	LIST_ID NUMBER not null,
 	TOPIC_ID NUMBER not null
 )
 /
@@ -40,7 +45,8 @@ create table USERS
 (
 	ID NUMBER not null
 		primary key,
-	USERNAME NUMBER not null,
+	EMAIL VARCHAR2 not null,
+	APIKEY VARCHAR2 not null,
 	CREATION_DATE DATE not null,
 	LAST_LOGIN DATE not null,
 	POS_X FLOAT,
@@ -58,18 +64,8 @@ create table OFFERS
 		primary key,
 	PROPOSER_ID NUMBER not null,
 	BOOK_ID_1 NUMBER not null,
-	INTERESTED_BOOK_LIST NUMBER,
 	INTERESTED_TOPIC_LIST NUMBER,
 	EXPIRATION_DATE DATE not null,
-	PROPOSEE_ID NUMBER not null,
-	BOOK_ID_2 NUMBER
+	DONE BOOLEAN not null
 )
 /
-
-create table BOOK_LISTS
-(
-	LIST_ID NUMBER not null,
-	BOOK_ID NUMBER not null
-)
-/
-

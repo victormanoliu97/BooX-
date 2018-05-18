@@ -79,8 +79,8 @@ if 'genres' not in arguments.keys():
     returnErrorMessage("No genres field found.")
 if 'interestedInBooks' not in arguments.keys():
     returnErrorMessage("No interestedInBooks field found.")
-if 'interestedInGenres' not in arguments.keys():
-    returnErrorMessage("No interestedInGenres field found.")
+if 'interestedInTopics' not in arguments.keys():
+    returnErrorMessage("No interestedInTopics field found.")
 if 'expirationDate' not in arguments.keys():
     returnErrorMessage("No expirationDate field found.")
 
