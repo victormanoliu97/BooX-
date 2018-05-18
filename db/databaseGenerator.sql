@@ -13,7 +13,8 @@ create table BOOKS
 	TITLE VARCHAR2(256) not null,
 	AUTHOR VARCHAR2(256) not null,
 	ISBN VARCHAR2(13),
-	LANGUAGEID NUMBER not null
+	LANGUAGEID NUMBER not null,
+	THUMBNAIL_URL VARCHAR2(512) not null
 )
 /
 create table LANGUAGES

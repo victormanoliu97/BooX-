@@ -117,7 +117,7 @@ def addUser(email,apiKey):
     conn.commit()
     return userId
 
-def addBook(title,author,isbn,language,topics):
+def addBook(title,author,isbn,language,topics,thumbnail):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
 
@@ -137,8 +137,8 @@ def addBook(title,author,isbn,language,topics):
     else:
         langId = 0 #if not found, make it unknown
 
-    querystring = '''insert into books (id,title,author,isbn,languageid) values ({id},'{title}','{author}','{isbn}','{language}')'''.format(
-        id=bookId,title=title,author=author,isbn=isbn,language=langId)
+    querystring = '''insert into books (id,title,author,isbn,languageid,thumbnail_url) values ({id},'{title}','{author}','{isbn}','{language}','{thumbnail_url}')'''.format(
+        id=bookId,title=title,author=author,isbn=isbn,language=langId,thumbnail_url=thumbnail)
     cursor.execute(querystring)
 
     for topic in topics:
@@ -155,11 +155,17 @@ def addBook(title,author,isbn,language,topics):
     conn.commit()
     return bookId
 
+def getOffer(id='',user='',filters=['','','']):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring = '''select * from offers o, users u o.proposer_id=u.id where o.id={id} or o.PROPOSER_ID={user} or () '''.format(id=id)
+    cursor.execute(querystring) 
+    conn.commit()
 
 if __name__=='__main__':
     # addUser('pandaismyname1@localhost.com','cevaCod007')
-    updateUserLocation('pandaismyname1@localhost.com',23.5332,12.4432)
-    # addBook('Perete','Costel','','Afrikaans',["Computers", "Technology & Engineering"])
+    # updateUserLocation('pandaismyname1@localhost.com',23.5332,12.4432)
+    addBook('Perete','Costel','','Afrikaans',["Computers", "Technology & Engineering"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
     # addOffer(1,1,["Computers", "Technology & Engineering"],'6.1.2018')
     # menu = consolemenu.ConsoleMenu("BooX", "Database Manager")
     # fastBuilder = consolemenu.items.FunctionItem("Build Database In One Shot",buildAnything)
