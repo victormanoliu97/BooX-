@@ -93,7 +93,7 @@ function switchNav()
 }
 
 function createPopup(url) {
-    var newWindow = window.open(url, 'bookOffer', 'height=620, width=900');
+    var newWindow = window.open(url, 'bookOffer', 'height=570, width=900');
 
     if (window.focus) {
         newWindow.focus();
