@@ -7,6 +7,7 @@ import cgitb; cgitb.enable() # Optional; for debugging only
 sys.path.append('../server')
 import GoogleBooksApiHandler as GBooks
 import languages as Lang
+import topics as Tpc
 import json
 from pprint import pprint
 
@@ -35,6 +36,14 @@ def validateLanguage(text):
     languages = Lang.getLanguages()
     if text not in languages:
         returnErrorMessage("Your language is invalid.")
+
+def validateTopics(objectCollection):
+    topics = Tpc.getTopics()
+    if len(objectCollection):
+        returnErrorMessage("You did not select any topic.")
+    for topic in objectCollection:
+        if topic not in topics:
+            returnErrorMessage("Your topic is invalid.")
 
 def validateThumbnail(url):
     if url[-4:]=='.gif':
@@ -76,20 +85,11 @@ if 'expirationDate' not in arguments.keys():
     returnErrorMessage("No expirationDate field found.")
 
 isbn = arguments['isbn'].value
-author = arguments['author'].value
-title = arguments['title'].value
-language = arguments['language'].value
-thumbnail = arguments['thumbnail'].value
-genres = json.loads(arguments['genres'].value)
+
 interestedInBooks = json.loads(arguments['interestedInBooks'].value)
-interesteInGenres = json.loads(arguments['interestedInGenres'].value)
+interesteInTopics = json.loads(arguments['interestedInTopics'].value)
 expirationDateText = arguments['expirationDate'].value
 
-validateLanguage(language)
-if thumbnail=="":
-    thumbnail = "https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg"
-validateThumbnail(thumbnail)
-validateDate(expirationDateText)
 if isbn!="":
     book = validateISBN(isbn)
     author = book['author']
@@ -97,6 +97,15 @@ if isbn!="":
     language = book['language']
     thumbnail = book['smallImage']
 else:
+    author = arguments['author'].value
+    title = arguments['title'].value
+    language = arguments['language'].value
+    thumbnail = arguments['thumbnail'].value
+    validateLanguage(language)
+    if thumbnail=="":
+        thumbnail = "https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg"
+    validateThumbnail(thumbnail)
+    validateDate(expirationDateText)
     validateStandardTextField(author,'author')
     validateStandardTextField(title,'title')
-    validateGenres(genres)
+    validateTopics(interesteInTopics)
