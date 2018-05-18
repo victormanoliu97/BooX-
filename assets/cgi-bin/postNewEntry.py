@@ -109,3 +109,5 @@ else:
     validateStandardTextField(author,'author')
     validateStandardTextField(title,'title')
     validateTopics(interesteInTopics)
+
+import databaseManager as DB
