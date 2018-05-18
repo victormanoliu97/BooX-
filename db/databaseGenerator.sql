@@ -45,8 +45,8 @@ create table USERS
 (
 	ID NUMBER not null
 		primary key,
-	EMAIL VARCHAR2 not null,
-	APIKEY VARCHAR2 not null,
+	EMAIL VARCHAR2(128) not null,
+	APIKEY VARCHAR2(1024) not null,
 	CREATION_DATE DATE not null,
 	LAST_LOGIN DATE not null,
 	POS_X FLOAT,
@@ -66,6 +66,6 @@ create table OFFERS
 	BOOK_ID_1 NUMBER not null,
 	INTERESTED_TOPIC_LIST NUMBER,
 	EXPIRATION_DATE DATE not null,
-	DONE BOOLEAN not null
+	DONE NUMBER(1) not null
 )
 /
