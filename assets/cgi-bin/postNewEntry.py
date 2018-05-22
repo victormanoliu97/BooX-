@@ -85,6 +85,9 @@ if 'interestedInTopics' not in arguments.keys():
 if 'expirationDate' not in arguments.keys():
     returnErrorMessage("No expirationDate field found.")
 
+<<<<<<< HEAD
+=======
+>>>>>>> 125e8ad877c7882bbccc25b20f7ce7485915e473
 
 isbn = arguments['isbn'].value
 if (!xss.validate(isbn)):
