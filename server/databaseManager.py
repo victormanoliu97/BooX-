@@ -158,7 +158,7 @@ def addBook(title,author,isbn,language,topics,thumbnail):
 def getOffer(id='',user='',filters=['','','']):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
-    querystring = '''select * from offers o, users u o.proposer_id=u.id where o.id={id} or o.PROPOSER_ID={user} or () '''.format(id=id)
+    querystring = '''select * from offers o,langauges l, users u o.proposer_id=u.id where o.id={id} or o.PROPOSER_ID={user} or () '''.format(id=id)
     cursor.execute(querystring) 
     conn.commit()
 
