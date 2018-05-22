@@ -9,6 +9,7 @@ import GoogleBooksApiHandler as GBooks
 import languages as Lang
 import topics as Tpc
 import json
+import xssValidator as xss
 from pprint import pprint
 
 def returnErrorMessage(text):
@@ -84,11 +85,24 @@ if 'interestedInTopics' not in arguments.keys():
 if 'expirationDate' not in arguments.keys():
     returnErrorMessage("No expirationDate field found.")
 
+
 isbn = arguments['isbn'].value
+if (!xss.validate(isbn)):
+    returnErrorMessage("You have no power here, you xss injector")
 
 interestedInBooks = json.loads(arguments['interestedInBooks'].value)
+if (!xss.validate(interestedInBooks)):
+    returnErrorMessage("You have no power here, you xss injector")
 interesteInTopics = json.loads(arguments['interestedInTopics'].value)
+if (!xss.validate(interesteInTopics)):
+    returnErrorMessage("You have no power here, you xss injector")
 expirationDateText = arguments['expirationDate'].value
+if (!xss.validate(expirationDateText)):
+    returnErrorMessage("You have no power here, you xss injector")
+
+
+validateDate(expirationDateText)
+validateTopics(interesteInTopics)
 
 if isbn!="":
     book = validateISBN(isbn)
@@ -98,16 +112,23 @@ if isbn!="":
     thumbnail = book['smallImage']
 else:
     author = arguments['author'].value
+    if (!xss.validate(author)):
+        returnErrorMessage("You have no power here, you xss injector")
     title = arguments['title'].value
+    if (!xss.validate(title)):
+        returnErrorMessage("You have no power here, you xss injector")
     language = arguments['language'].value
+    if (!xss.validate(language)):
+        returnErrorMessage("You have no power here, you xss injector")
     thumbnail = arguments['thumbnail'].value
+    if (!xss.validate(thumbnail)):
+        returnErrorMessage("You have no power here, you xss injector")
     validateLanguage(language)
     if thumbnail=="":
         thumbnail = "https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg"
     validateThumbnail(thumbnail)
-    validateDate(expirationDateText)
     validateStandardTextField(author,'author')
     validateStandardTextField(title,'title')
-    validateTopics(interesteInTopics)
+    
 
 import databaseManager as DB
