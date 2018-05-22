@@ -11,6 +11,7 @@ import topics as Tpc
 import json
 import xssValidator as xss
 from pprint import pprint
+from sqlInjectionValidator import validate
 
 def returnErrorMessage(text):
     print("<error>{text}</error>".format(text=text))
@@ -87,6 +88,24 @@ if 'expirationDate' not in arguments.keys():
 
 <<<<<<< HEAD
 =======
+if validate(arguments['isbn'].value) == False:
+    returnErrorMessage("You have tried to sql inject")
+if validate(arguments['author'].value) == False:
+    returnErrorMessage("You have tried to sql inject")
+if validate(arguments['title'].value) == False:
+    returnErrorMessage("You have tried to sql inject")
+if validate(arguments['language'].value) == False:
+    returnErrorMessage("You have tried to sql inject")
+if validate(arguments['thumbnail'].value) == False:
+    returnErrorMessage("You have tried to sql inject")
+if validate(arguments['genres'].value) == False:
+    returnErrorMessage("You have tried to sql inject")
+if validate(arguments['interestedInBooks'].value) == False:
+    returnErrorMessage("You have tried to sql inject")
+if validate(arguments['interestedInTopics'].value) == False:
+    returnErrorMessage("You have tried to sql inject")
+if validate(arguments['expirationDate'].value) == False:
+    returnErrorMessage("You have tried to sql inject")
 >>>>>>> 125e8ad877c7882bbccc25b20f7ce7485915e473
 
 isbn = arguments['isbn'].value
