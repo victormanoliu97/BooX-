@@ -155,12 +155,96 @@ def addBook(title,author,isbn,language,topics,thumbnail):
     conn.commit()
     return bookId
 
-def getOffer(id='',user='',filters=['','','']):
+def getOffers(id='',user='',filters=['','',''],offset=0,fetchSize=80):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
-    querystring = '''select * from offers o,langauges l, users u o.proposer_id=u.id where o.id={id} or o.PROPOSER_ID={user} or () '''.format(id=id)
-    cursor.execute(querystring) 
-    conn.commit()
+    join = ''
+    where = ''
+    if id!='':
+        where = ' o.id={id}'.format(id=id)
+    if user!='':
+        join = join + ', users u'
+        where = ' and o.proposer_id=u.id and u.id={user}'.format(user=user)
+    if filters[0]!='':  #Topics
+        join = join + ', topic_books_lists t'
+        where = where + ' and b.id=t.book_id and t.topic_id={topic}'.format(topic=getTopicId(filters[0]))
+    if filters[1]!='':  #Languages
+        join = join + ', languages l'
+        where = where + ' and b.languageid=t.id and t.language={language}'.format(language=getLanguageId(filters[1]))
+    if filters[2]!='':  #Distance
+    #TODO
+        join = join
+        where = where
+    querystring = '''select o.id, o,proposer_id, o.book_id, o.interested_topic_list, o.expiration_date, o.done from offers o, books b{joins} where 1=1 {wheres}'''.format(joins=join,wheres=where)
+    cursor.execute(querystring)
+    cursor.fetchmany(offset)
+    cursorResults = cursor.fetchmany(fetchSize)
+    result = []
+    for entry in cursorResults:
+        data = {}
+        data['id'] = entry[0]
+        data['email'] = getUserEmail(entry[1])
+        data['book'] = getBook(entry[2])
+        data['interested'] = getInterestedTopics(entry[3])
+        data['expiration'] = entry[4]
+        data['done'] = entry[5]
+        result.append(data)
+    return result
+
+def getInterestedTopics(id):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring='select t.name from topic_interested_lists t1, topics t2 where t1.topic_id=t2.id and t1.list_id={id}'.format(id=id)
+    cursor.execute(querystring)
+    cursorResults = cursor.fetchall()
+    topics = []
+    for topic in cursorResults:
+        topics.append(topic[0])
+    return topics
+
+def getBook(id):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring='select title, author, languageid, thubnail_url from books where id={id}'.format(id=id)
+    cursor.execute(querystring)
+    cursorResult = cursor.fetchone()
+    data = {}
+    data['title'] = cursorResult[0]
+    data['author'] = cursorResult[1]
+    data['language'] = getLanguage(cursorResult[2])
+    data['thumbnail'] = cursorResult[3]
+    return data
+
+def getUserEmail(id):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring='select email from users where id={id}'.format(id=id)
+    cursor.execute(querystring)
+    return cursor.fetchone()[0]
+
+def getTopicId(text):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring = '''select id from topics where name={topic}'''.format(topic=text)
+    cursor.execute(querystring)
+    topicID = cursor.fetchone()[0]
+    return topicID
+
+def getLanguageId(text):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring = '''select id from languages where language={language}'''.format(language=text)
+    cursor.execute(querystring)
+    langaugeID = cursor.fetchone()[0]
+    return langaugeID
+
+def getLanguage(id):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring = '''select language from languages where id={id}'''.format(id=id)
+    cursor.execute(querystring)
+    langaugeID = cursor.fetchone()[0]
+    return langaugeID
 
 if __name__=='__main__':
     # addUser('pandaismyname1@localhost.com','cevaCod007')

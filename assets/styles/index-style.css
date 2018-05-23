@@ -35,6 +35,8 @@ body {
 .header a.active {
     background-color: rgba(216, 0, 50, 1);
     color: white;
+    padding-bottom: 6px;
+    padding-top: 6px;
 }
 
 .header-right {
