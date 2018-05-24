@@ -161,7 +161,7 @@ def getOffers(id='',user='',filters=['','',''],offset=0,fetchSize=80):
     join = ''
     where = ''
     if id!='':
-        where = ' o.id={id}'.format(id=id)
+        where = ' and o.id={id}'.format(id=id)
     if user!='':
         join = join + ', users u'
         where = ' and o.proposer_id=u.id and u.id={user}'.format(user=user)
@@ -175,7 +175,7 @@ def getOffers(id='',user='',filters=['','',''],offset=0,fetchSize=80):
     #TODO
         join = join
         where = where
-    querystring = '''select o.id, o,proposer_id, o.book_id, o.interested_topic_list, o.expiration_date, o.done from offers o, books b{joins} where 1=1 {wheres}'''.format(joins=join,wheres=where)
+    querystring = '''select o.id, o.proposer_id, o.book_id, o.interested_topic_list, o.expiration_date, o.done from offers o, books b{joins} where 1=1 {wheres}'''.format(joins=join,wheres=where)
     cursor.execute(querystring)
     cursor.fetchmany(offset)
     cursorResults = cursor.fetchmany(fetchSize)

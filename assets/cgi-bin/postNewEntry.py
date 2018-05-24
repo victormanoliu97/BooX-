@@ -86,8 +86,6 @@ if 'interestedInTopics' not in arguments.keys():
 if 'expirationDate' not in arguments.keys():
     returnErrorMessage("No expirationDate field found.")
 
-<<<<<<< HEAD
-=======
 if validate(arguments['isbn'].value) == False:
     returnErrorMessage("You have tried to sql inject")
 if validate(arguments['author'].value) == False:
@@ -106,7 +104,6 @@ if validate(arguments['interestedInTopics'].value) == False:
     returnErrorMessage("You have tried to sql inject")
 if validate(arguments['expirationDate'].value) == False:
     returnErrorMessage("You have tried to sql inject")
->>>>>>> 125e8ad877c7882bbccc25b20f7ce7485915e473
 
 isbn = arguments['isbn'].value
 if (!xss.validate(isbn)):
