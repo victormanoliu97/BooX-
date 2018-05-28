@@ -14,3 +14,5 @@ server/__pycache__/GoogleBooksApiHandler.cpython-36.pyc
 server/__pycache__/GoogleBooksApiHandler.cpython-36.pyc
 server/exporters/__pycache__/exportManager.cpython-36.pyc
 *.pyc
+server/__pycache__/databaseManager.cpython-36.pyc
+*.pyc

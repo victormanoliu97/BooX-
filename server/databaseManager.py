@@ -263,7 +263,14 @@ if __name__=='__main__':
     # addUser('pandaismyname1@localhost.com','cevaCod007')
     # updateUserLocation('pandaismyname1@localhost.com',23.5332,12.4432)
     addBook('Perete','Costel','','Afrikaans',["Computers", "Technology & Engineering"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
-    # addOffer(1,1,["Computers", "Technology & Engineering"],'6.1.2018')
+    addBook('Amintiri din Copilarie','Ion Creanga','','Romanian, Moldavian, Moldovan', ["Fable"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+    addBook('Ion','Liviu Rebreanu','','Romanian, Moldavian, Moldovan',["Classic"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+    addBook('Baltagul','Mihail Sadoveanu','','Romanian, Moldavian, Moldovan',["Folklore"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+    addBook('Close to Heaven','John Wickey','','English',["Mystery"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+
+
+
+     #addOffer(1,1,["Computers", "Technology & Engineering"],'6.1.2018')
     # menu = consolemenu.ConsoleMenu("BooX", "Database Manager")
     # fastBuilder = consolemenu.items.FunctionItem("Build Database In One Shot",buildAnything)
     # incrementalBuilderMenu = consolemenu.ConsoleMenu("Build the database step by step")

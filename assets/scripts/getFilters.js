@@ -3,16 +3,15 @@ function getFilters() {
     var language = document.getElementById("languages").value;
     var max_distance = document.getElementById("distance").value;
 
-    var obj = new Object();
-    obj.topic = topic;
-    obj.language = language;
-    obj.max_distance = max_distance;
-    var json = JSON.stringify(obj);
+    json = {}
+    json.topic = topic;
+    json.language = language;
+    json.max_distance = max_distance;
 
     var jsonToSend = json;
-    var destinationToSend = 'cgi-bin/reportsHandler.py?filter='
+    var destinationToSend = 'cgi-bin/getBooks.py';
 
-    function testFilter() { alert("Yey"); }
+    function testFilter() { console.log(jsonToSend); }
 
     post(jsonToSend, destinationToSend, testFilter);
 }
