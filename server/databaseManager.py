@@ -81,7 +81,7 @@ def addOffer(propoeserID,bookID,intrestedInTopics,expirationDate):
             querystring = '''insert into TOPICS_INTERSTED_LISTS (LIST_ID,topic_id) values({listId},{topicId})'''.format(listId=listId,topicId=topicId)
             cursor.execute(querystring)
 
-    querystring = '''insert into offers (id,PROPOSER_ID,BOOK_ID_1,INTERESTED_TOPIC_LIST,EXPIRATION_DATE,DONE) values ({id},{PROPOSER_ID},{BOOK_ID_1},{INTERESTED_TOPIC_LIST},to_Date('{EXPIRATION_DATE}','dd.mm.yyyy'),0)'''.format(
+    querystring = '''insert into offers (id,PROPOSER_ID,BOOK_ID_1,INTERESTED_TOPIC_LIST,EXPIRATION_DATE,DONE) values ({id},{PROPOSER_ID},{BOOK_ID_1},{INTERESTED_TOPIC_LIST},to_Date('{EXPIRATION_DATE}','yyyy-mm-dd'),0)'''.format(
         id=offerID,PROPOSER_ID=propoeserID,BOOK_ID_1=bookID,INTERESTED_TOPIC_LIST=listId,EXPIRATION_DATE=expirationDate)
     cursor.execute(querystring)
 
@@ -106,8 +106,6 @@ def addUser(email,apiKey):
         userId = userId + 1
     else:
         userId = 1
-
-
     import datetime
     now = datetime.datetime.now()
     querystring = '''insert into USERS (id,email,apikey,creation_date,last_login) values({id},'{email}','{apikey}',
@@ -116,6 +114,13 @@ def addUser(email,apiKey):
     cursor.execute(querystring)
     conn.commit()
     return userId
+
+def findUserByEmail(email):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring="select id from users where email='{email}'".format(email=email)
+    cursor.execute(querystring)
+    return cursor.fetchone()
 
 def addBook(title,author,isbn,language,topics,thumbnail):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
@@ -137,12 +142,6 @@ def addBook(title,author,isbn,language,topics,thumbnail):
     else:
         langId = 0 #if not found, make it unknown
 
-    print(bookId)
-    print(title.encode("utf-8"))
-    print(author[0].encode('utf-8'))
-    print(isbn)
-    print(langId)
-    print(thumbnail.encode("utf-8"))
     querystring = '''insert into books (id,title,author,isbn,languageid,thumbnail_url) values ({id},'{title}','{author}','{isbn}','{language}','{thumbnail_url}')'''.format(
         id=bookId,title=title,author=author[0],isbn=isbn,language=langId,thumbnail_url=thumbnail)
     cursor.execute(querystring)
@@ -164,7 +163,7 @@ def addBook(title,author,isbn,language,topics,thumbnail):
 def getUserIDByApiKey(key):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
-    querystring='select ID from users where APIKEY={key}'.format(key=key)
+    querystring="select ID from users where APIKEY='{key}'".format(key=key)
     cursor.execute(querystring)
     return cursor.fetchone()[0]
 

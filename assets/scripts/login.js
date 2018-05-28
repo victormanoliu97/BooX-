@@ -16,6 +16,9 @@ function onLoadGoogleAuthApi() {
         if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
           console.log(gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile())
           var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+          currentUserApiKey = profile.getId();
+          currentUserEmail = profile.getEmail();
+          post({'email':currentUserEmail,'apiKey':currentUserApiKey},'cgi-bin/users.py',function(response){console.log(response)});
           console.log('Image URL: ' + profile.getImageUrl());
           profilePicture = "url("+profile.getImageUrl()+")";
           if(document.getElementById("profileImage")!=null)
