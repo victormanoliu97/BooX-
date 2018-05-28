@@ -2,6 +2,7 @@ import os
 import urllib.request
 import urllib.parse
 import json
+import languages as langs
 from io import StringIO
 from pprint import pprint
 
@@ -41,13 +42,13 @@ def getInfoAboutBook(jquery):
     if 'imageLinks' in jquery['volumeInfo']:
         information['smallImage'] = jquery['volumeInfo']['imageLinks']['smallThumbnail']
     else:
-        information['smallImage'] = ''
+        information['smallImage'] = 'https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg'
     if 'imageLinks' in jquery['volumeInfo']:
         information['bigImage'] = jquery['volumeInfo']['imageLinks']['thumbnail']
     else:
-        information['bigImage'] = ''
+        information['bigImage'] = 'https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg'
     if 'language' in jquery['volumeInfo']:
-        information['language'] = jquery['volumeInfo']['language']
+        information['language'] = langs.getLanguageFromRegion(jquery['volumeInfo']['language'])
     else:
         information['language'] = ''
     return information

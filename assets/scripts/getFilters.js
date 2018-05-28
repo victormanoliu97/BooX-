@@ -1,4 +1,5 @@
-function getFilters() {
+function search() {
+    document.getElementById("main").innerHTML = "";
     var topic = document.getElementById("genres").value;
     var language = document.getElementById("languages").value;
     var max_distance = document.getElementById("distance").value;

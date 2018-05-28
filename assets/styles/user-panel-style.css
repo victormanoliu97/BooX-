@@ -165,6 +165,7 @@ input[type=text] {
 }
 #profileImage
 {
+    border-radius: 99999px;
     background-size:cover;
     padding: 8px 8px 8px 8px;
     width: 3em;

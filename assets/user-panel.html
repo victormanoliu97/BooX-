@@ -22,15 +22,17 @@
     <meta name="google-signin-client_id" content="582910134035-ork4qn6r5u724n516a1j0kjh35vlfofq.apps.googleusercontent.com">
     
     <script src = "scripts/isoLanguages.js"></script>
-    <script src = "scripts/genreList.js"></script>
+    <script src = "scripts/topicList.js"></script>
     <script>
          $(function() {
+            $(function() {
             $( "#languages" ).autocomplete({
                source: languages
             });
-            $( "#genres" ).autocomplete({
-               source: genres
+            $( "#topics" ).autocomplete({
+               source: topics
             });
+         });
          });
       </script>
 
@@ -56,9 +58,9 @@
      <div id="filterContainer">
             <div id="filterDistance"><p id="distanceLabel">Max Distance:</p><input type="range" oninput="updateDistanceFilter()" id="distance" min="10" max="500"> </div>
             <!-- <div id="filterExchangeWith"><p>Exchange with:</p><input type="text" id="exchange"></div> -->
-            <div id="filterGenre"><p>Topic:</p><input type="text" id="genres"></div>
+            <div id="filterTopics"><p>Topic:</p><input type="text" id="topics"></div>
             <div id="filterLanguage"><p>Language:</p><input type="text" id="languages"></div>
-            <a id="filterLabel" onclick="getFilters()">Apply Filters</a>
+            <a id="filterLabel" onclick="search()">Search</a>
      </div>
 </div>
 

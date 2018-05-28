@@ -87,7 +87,7 @@ arguments = cgi.FieldStorage()
 jsonObj = {}
 if 'json' not in arguments.keys():
     returnErrorMessage("No JSON found.")
-jsonObj = json.loads(arguments['json'].value)
+jsonObj = json.loads(arguments['json'].value.encode('utf-8'))
 
 
 

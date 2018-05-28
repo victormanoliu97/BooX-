@@ -81,7 +81,7 @@ def addOffer(propoeserID,bookID,intrestedInTopics,expirationDate):
             querystring = '''insert into TOPICS_INTERSTED_LISTS (LIST_ID,topic_id) values({listId},{topicId})'''.format(listId=listId,topicId=topicId)
             cursor.execute(querystring)
 
-    querystring = '''insert into offers (id,PROPOSER_ID,BOOK_ID_1,INTERESTED_TOPIC_LIST,EXPIRATION_DATE,DONE) values ({id},{PROPOSER_ID},{BOOK_ID_1},{INTERESTED_TOPIC_LIST},to_Date('{EXPIRATION_DATE}','yyyy-mm-dd'),0)'''.format(
+    querystring = '''insert into offers (id,PROPOSER_ID,BOOK_ID,INTERESTED_TOPIC_LIST,EXPIRATION_DATE,DONE) values ({id},{PROPOSER_ID},{BOOK_ID_1},{INTERESTED_TOPIC_LIST},to_Date('{EXPIRATION_DATE}','yyyy-mm-dd'),0)'''.format(
         id=offerID,PROPOSER_ID=propoeserID,BOOK_ID_1=bookID,INTERESTED_TOPIC_LIST=listId,EXPIRATION_DATE=expirationDate)
     cursor.execute(querystring)
 
@@ -138,7 +138,7 @@ def addBook(title,author,isbn,language,topics,thumbnail):
     cursor.execute(querystring)
     langId = cursor.fetchone()
     if langId!=None:
-        langId = langId + 1
+        langId = langId[0]
     else:
         langId = 0 #if not found, make it unknown
 
@@ -167,7 +167,7 @@ def getUserIDByApiKey(key):
     cursor.execute(querystring)
     return cursor.fetchone()[0]
 
-def getOffers(id='',user='',filters=['','',''],offset=0,fetchSize=80):
+def getOffers(id='',searchLike='',user='',filters=['','']):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
     join = ''
@@ -177,20 +177,20 @@ def getOffers(id='',user='',filters=['','',''],offset=0,fetchSize=80):
     if user!='':
         join = join + ', users u'
         where = ' and o.proposer_id=u.id and u.id={user}'.format(user=user)
+    else:
+        where = ' and o.done=0'
+    if searchLike!='':  #Topics
+        where = where + '''and '%{search}%' like b.title or '%{search}%' like b.author'''.format(search=searchLike)
     if filters[0]!='':  #Topics
         join = join + ', topic_books_lists t'
         where = where + ' and b.id=t.book_id and t.topic_id={topic}'.format(topic=getTopicId(filters[0]))
     if filters[1]!='':  #Languages
         join = join + ', languages l'
         where = where + ' and b.languageid=t.id and t.language={language}'.format(language=getLanguageId(filters[1]))
-    if filters[2]!='':  #Distance
-    #TODO
-        join = join
-        where = where
-    querystring = '''select o.id, o.proposer_id, o.book_id, o.interested_topic_list, o.expiration_date, o.done from offers o, books b{joins} where 1=1 {wheres}'''.format(joins=join,wheres=where)
+    querystring = '''select o.id, o.proposer_id, o.book_id, o.interested_topic_list, o.expiration_date, o.done from offers o, books b{joins} where o.book_id=b.id {wheres}'''.format(joins=join,wheres=where)
     cursor.execute(querystring)
-    cursor.fetchmany(offset)
-    cursorResults = cursor.fetchmany(fetchSize)
+    print(querystring)
+    cursorResults = cursor.fetchall()
     result = []
     for entry in cursorResults:
         data = {}
@@ -201,12 +201,13 @@ def getOffers(id='',user='',filters=['','',''],offset=0,fetchSize=80):
         data['expiration'] = entry[4]
         data['done'] = entry[5]
         result.append(data)
+    print(len(result))
     return result
 
 def getInterestedTopics(id):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
-    querystring='select t.name from topic_interested_lists t1, topics t2 where t1.topic_id=t2.id and t1.list_id={id}'.format(id=id)
+    querystring='select t2.name from TOPICS_INTERSTED_LISTS t1, TOPICS t2 where t1.topic_id=t2.id and t1.list_id={id}'.format(id=id)
     cursor.execute(querystring)
     cursorResults = cursor.fetchall()
     topics = []
@@ -217,12 +218,12 @@ def getInterestedTopics(id):
 def getBook(id):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
-    querystring='select title, author, languageid, thubnail_url from books where id={id}'.format(id=id)
+    querystring='select title, author, languageid, THUMBNAIL_URL from books where id={id}'.format(id=id)
     cursor.execute(querystring)
     cursorResult = cursor.fetchone()
     data = {}
-    data['title'] = cursorResult[0]
-    data['author'] = cursorResult[1]
+    data['title'] = cursorResult[0].encode('utf-8')
+    data['author'] = cursorResult[1].encode('utf-8')
     data['language'] = getLanguage(cursorResult[2])
     data['thumbnail'] = cursorResult[3]
     return data
@@ -232,22 +233,31 @@ def getUserEmail(id):
     cursor = conn.cursor()
     querystring='select email from users where id={id}'.format(id=id)
     cursor.execute(querystring)
-    return cursor.fetchone()[0]
+    try:
+        return cursor.fetchone()[0]
+    except:
+        return None
 
 def getTopicId(text):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
     querystring = '''select id from topics where name={topic}'''.format(topic=text)
     cursor.execute(querystring)
-    topicID = cursor.fetchone()[0]
-    return topicID
+    try:
+        topicID = cursor.fetchone()[0]
+        return topicID
+    except:
+        return None
 
 def getLanguageId(text):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
-    querystring = '''select id from languages where language={language}'''.format(language=text)
+    querystring = '''select id from languages where language like'%{language}%' '''.format(language=text)
     cursor.execute(querystring)
-    langaugeID = cursor.fetchone()[0]
+    try:
+        langaugeID = cursor.fetchone()[0]
+    except:
+        return None
     return langaugeID
 
 def getLanguage(id):
@@ -255,8 +265,11 @@ def getLanguage(id):
     cursor = conn.cursor()
     querystring = '''select language from languages where id={id}'''.format(id=id)
     cursor.execute(querystring)
-    langaugeID = cursor.fetchone()[0]
-    return langaugeID
+    try:
+        langaugeID = cursor.fetchone()[0]
+        return langaugeID
+    except:
+        return None
 
 if __name__=='__main__':
     # addUser('pandaismyname1@localhost.com','cevaCod007')
