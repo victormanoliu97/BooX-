@@ -66,56 +66,62 @@ print("Content-Type: text/html\n")
 
 arguments = cgi.FieldStorage()
 
+jsonObj = {}
+if 'json' not in argumets.keys():
+    returnErrorMessage("No JSON found.")
+jsonObj = json.loads(arguments['json'])
 
-if 'isbn' not in arguments.keys():
+
+
+if 'isbn' not in jsonObj.keys():
     returnErrorMessage("No ISBN field found.")
-if 'author' not in arguments.keys():
+if 'author' not in jsonObj.keys():
     returnErrorMessage("No author field found.")
-if 'title' not in arguments.keys():
+if 'title' not in jsonObj.keys():
     returnErrorMessage("No title field found.")
-if 'language' not in arguments.keys():
+if 'language' not in jsonObj.keys():
     returnErrorMessage("No language field found.")
-if 'thumbnail' not in arguments.keys():
+if 'thumbnail' not in jsonObj.keys():
     returnErrorMessage("No thumbnail field found.")
-if 'genres' not in arguments.keys():
+if 'genres' not in jsonObj.keys():
     returnErrorMessage("No genres field found.")
-if 'interestedInBooks' not in arguments.keys():
+if 'interestedInBooks' not in jsonObj.keys():
     returnErrorMessage("No interestedInBooks field found.")
-if 'interestedInTopics' not in arguments.keys():
+if 'interestedInTopics' not in jsonObj.keys():
     returnErrorMessage("No interestedInTopics field found.")
-if 'expirationDate' not in arguments.keys():
+if 'expirationDate' not in jsonObj.keys():
     returnErrorMessage("No expirationDate field found.")
 
-if validate(arguments['isbn'].value) == False:
+if validate(jsonObj['isbn'].value) == False:
     returnErrorMessage("You have tried to sql inject")
-if validate(arguments['author'].value) == False:
+if validate(jsonObj['author'].value) == False:
     returnErrorMessage("You have tried to sql inject")
-if validate(arguments['title'].value) == False:
+if validate(jsonObj['title'].value) == False:
     returnErrorMessage("You have tried to sql inject")
-if validate(arguments['language'].value) == False:
+if validate(jsonObj['language'].value) == False:
     returnErrorMessage("You have tried to sql inject")
-if validate(arguments['thumbnail'].value) == False:
+if validate(jsonObj['thumbnail'].value) == False:
     returnErrorMessage("You have tried to sql inject")
-if validate(arguments['genres'].value) == False:
+if validate(jsonObj['genres'].value) == False:
     returnErrorMessage("You have tried to sql inject")
-if validate(arguments['interestedInBooks'].value) == False:
+if validate(jsonObj['interestedInBooks'].value) == False:
     returnErrorMessage("You have tried to sql inject")
-if validate(arguments['interestedInTopics'].value) == False:
+if validate(jsonObj['interestedInTopics'].value) == False:
     returnErrorMessage("You have tried to sql inject")
-if validate(arguments['expirationDate'].value) == False:
+if validate(jsonObj['expirationDate'].value) == False:
     returnErrorMessage("You have tried to sql inject")
 
-isbn = arguments['isbn'].value
+isbn = jsonObj['isbn'].value
 if (!xss.validate(isbn)):
     returnErrorMessage("You have no power here, you xss injector")
 
-interestedInBooks = json.loads(arguments['interestedInBooks'].value)
+interestedInBooks = json.loads(jsonObj['interestedInBooks'].value)
 if (!xss.validate(interestedInBooks)):
     returnErrorMessage("You have no power here, you xss injector")
-interesteInTopics = json.loads(arguments['interestedInTopics'].value)
+interesteInTopics = json.loads(jsonObj['interestedInTopics'].value)
 if (!xss.validate(interesteInTopics)):
     returnErrorMessage("You have no power here, you xss injector")
-expirationDateText = arguments['expirationDate'].value
+expirationDateText = jsonObj['expirationDate'].value
 if (!xss.validate(expirationDateText)):
     returnErrorMessage("You have no power here, you xss injector")
 
@@ -130,16 +136,16 @@ if isbn!="":
     language = book['language']
     thumbnail = book['smallImage']
 else:
-    author = arguments['author'].value
+    author = jsonObj['author'].value
     if (!xss.validate(author)):
         returnErrorMessage("You have no power here, you xss injector")
-    title = arguments['title'].value
+    title = jsonObj['title'].value
     if (!xss.validate(title)):
         returnErrorMessage("You have no power here, you xss injector")
-    language = arguments['language'].value
+    language = jsonObj['language'].value
     if (!xss.validate(language)):
         returnErrorMessage("You have no power here, you xss injector")
-    thumbnail = arguments['thumbnail'].value
+    thumbnail = jsonObj['thumbnail'].value
     if (!xss.validate(thumbnail)):
         returnErrorMessage("You have no power here, you xss injector")
     validateLanguage(language)
