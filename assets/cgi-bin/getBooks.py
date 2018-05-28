@@ -55,6 +55,6 @@ if (not sql.validate(max_distance)):
 
 result = DB.getOffers(searchLike=search,filters=[topic,language])
 response = {}
-response['type'] = 'success'
-response['data'] = result;
-print(response)
+response["type"] = 'success'
+response["data"] = result
+print(json.dumps(response))

@@ -158,8 +158,9 @@ function populate(response)
             container.style.margin = "auto";
             container.style.padding = "0.5em";
             container.innerHTML = bookEntryLayout;
-            container.getElementsByClassName("bookViewTitle").innerText = element.book.title;
-            container.getElementsByClassName("bookViewAuthor").innerText = element.book.author;
+            container.getElementsByClassName("bookViewTitle")[0].innerText = element.book.title;
+            container.getElementsByClassName("bookViewAuthor")[0].innerText = element.book.author;
+            container.getElementsByClassName("bookViewImage")[0].style.backgroundImage = "url("+element.book.thumbnail+")";
             document.getElementById("main").appendChild(container);
         });
     }

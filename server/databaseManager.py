@@ -3,6 +3,7 @@ import json
 import os
 import consolemenu
 import languages
+import datetime
 def sampleOracleConnection():
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521')
     cursor = conn.cursor()
@@ -197,7 +198,8 @@ def getOffers(id='',searchLike='',user='',filters=['','']):
         data['email'] = getUserEmail(entry[1])
         data['book'] = getBook(entry[2])
         data['interested'] = getInterestedTopics(entry[3])
-        data['expiration'] = entry[4]
+        date = entry[4]
+        data['expiration'] = str(date.year)+'-'+str(date.month)+'-'+str(date.day)
         data['done'] = entry[5]
         result.append(data)
     return result
@@ -220,8 +222,8 @@ def getBook(id):
     cursor.execute(querystring)
     cursorResult = cursor.fetchone()
     data = {}
-    data['title'] = cursorResult[0].encode('utf-8')
-    data['author'] = cursorResult[1].encode('utf-8')
+    data['title'] = cursorResult[0]
+    data['author'] = cursorResult[1]
     data['language'] = getLanguage(cursorResult[2])
     data['thumbnail'] = cursorResult[3]
     return data
