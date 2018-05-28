@@ -1,4 +1,5 @@
 .idea
+.pyc
 .vscode
 .idea/workspace.xml
 .idea/dataSources.local.xml
