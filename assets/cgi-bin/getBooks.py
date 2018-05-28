@@ -31,6 +31,10 @@ def returnSucces():
     max_distance = jsonObj['max_distance'] 
 
     response['message'] = dbMan.getOffers(topic, language, max_distance)
+
+    if response['message'] == "" :
+        returnErrorMessage("No books wore find")
+
     print(json.dumps(response))
     exit(0)
 
@@ -60,6 +64,8 @@ if (not xss.validate(topic)):
     returnErrorMessage("You have no power here, you xss injector")
 if (not xss.validate(language)):
     returnErrorMessage("You have no power here, you xss injector")
+
+
 
 returnSucces()
 

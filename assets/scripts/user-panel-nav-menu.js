@@ -128,3 +128,13 @@ function init()
         document.getElementById("main").appendChild(container);
     }
 }
+
+
+function createUserOffersPopup(url) {
+    var newWindow = window.open(url, 'bookOffer', 'height=300, width=700');
+
+    if (window.focus) {
+        newWindow.focus();
+    }
+    return false;
+}
