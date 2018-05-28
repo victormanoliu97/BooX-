@@ -171,7 +171,9 @@ input[type=text] {
     width: 3em;
     height: 3em;
     display: block;
+    border-radius: 999999px;
 }
+
 
 .filterbutton {
     background-color: red;

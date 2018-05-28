@@ -5,9 +5,10 @@
     <title>User-Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="scripts/jsonRequests.js"></script>
-    <link rel="stylesheet" href="styles/user-panel-style.css">
+    <!-- <link rel="stylesheet" href="styles/user-panel-style.css">
     <link rel="stylesheet" href="styles/bookView.css">
-    <link rel="stylesheet" href="styles/general-style.css">
+    <link rel="stylesheet" href="styles/general-style.css"> -->
+    <link rel = "stylesheet" href="styles/userOffersStyle.css">
     <script src="scripts/user-panel-nav-menu.js"></script>
     <script src="scripts/ownAPIHandler.js"></script>
     <script src="scripts/locationHandler.js"></script>
@@ -22,20 +23,20 @@
     <meta name="google-signin-client_id" content="582910134035-ork4qn6r5u724n516a1j0kjh35vlfofq.apps.googleusercontent.com">
     
     <script src = "scripts/isoLanguages.js"></script>
-    <script src = "scripts/topicList.js"></script>
+    <script src = "scripts/genreList.js"></script>
     <script>
          $(function() {
-            $(function() {
             $( "#languages" ).autocomplete({
                source: languages
             });
-            $( "#topics" ).autocomplete({
-               source: topics
+            $( "#genres" ).autocomplete({
+               source: genres
             });
          });
-<<<<<<< HEAD
-         });
->>>>>>> ce83f17a9669b27538afa80fe7bcf347da81cf6e
+
+        function myRedirect() {
+            window.location.replace("userOffersTemplate.html");
+        }
       </script>
 
       
@@ -44,24 +45,16 @@
 <body onload="init()">
 
 <div id="sidePanel" class="side">
-    <a href="#"><i class="fas fa-plus" onclick="return createPopup('submitBookForm.html')"></i></a>
-    <a href="#"><i class="fas fa-chart-bar" onclick="return createPopup('getStatisticsForm.html')"></i></a>
-    <a href="#"><i class="fas fa-map-marker-alt" onclick="getUserGeoLocation()" id="location-id"></i></a>
-    <a href="#" onclick="signOut()"><i class="fas fa-sign-out-alt"></i></a>
+    <!-- <div id="profileImage"><a href="#" onclick="myRedirect()"></a></div> -->
 </div>
 
 <div id="header">
     <a id="sidePanelOpenButton" style="padding: 0.2em;font-size: 2em" onclick="switchNav()"><i id="sidePanelButton" class="fas fa-arrow-circle-right"></i></a>
     <a id="logo" href="index.html">BooX</a>
-     <input id="search-bar" type="text" placeholder="Search books">
+     
      <div></div>
-     <div><a id="filterLabel" onclick="switchFilters()">Show Filters</a></div>
+     
      <div id="filterContainer">
-            <div id="filterDistance"><p id="distanceLabel">Max Distance:</p><input type="range" oninput="updateDistanceFilter()" id="distance" min="10" max="500"> </div>
-            <!-- <div id="filterExchangeWith"><p>Exchange with:</p><input type="text" id="exchange"></div> -->
-            <div id="filterTopics"><p>Topic:</p><input type="text" id="topics"></div>
-            <div id="filterLanguage"><p>Language:</p><input type="text" id="languages"></div>
-            <a id="filterLabel" onclick="search()">Search</a>
      </div>
 </div>
 
@@ -74,6 +67,7 @@
         <div class="bookViewInfo">
             <p class="bookViewTitle">Dummy Title Here</p>
             <p class="bookViewAuthor">Dummy Author Here</p>
+            <p class="bookViewAuthor">Done</p>
         </div>
     </div>
 </div>

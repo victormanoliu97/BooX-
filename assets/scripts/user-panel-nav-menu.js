@@ -116,5 +116,8 @@ function init()
     document.getElementById("main").innerHTML = "";
     filterContainerHTML = document.getElementById("filterContainer").innerHTML;
     document.getElementById("filterContainer").innerHTML = "";
+<<<<<<< HEAD
     post({},'cgi-bin/getBooks.py',function(response){console.log(response);});
+=======
+>>>>>>> ce83f17a9669b27538afa80fe7bcf347da81cf6e
 }
