@@ -273,10 +273,10 @@ if __name__=='__main__':
     # addUser('pandaismyname1@localhost.com','cevaCod007')
     # updateUserLocation('pandaismyname1@localhost.com',23.5332,12.4432)
     addBook('Perete','Costel','','Afrikaans',["Computers", "Technology & Engineering"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
-    addBook('Amintiri din Copilarie','Ion Creanga','','Romanian, Moldavian, Moldovan', ["Fable"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
-    addBook('Ion','Liviu Rebreanu','','Romanian, Moldavian, Moldovan',["Classic"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
-    addBook('Baltagul','Mihail Sadoveanu','','Romanian, Moldavian, Moldovan',["Folklore"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
-    addBook('Close to Heaven','John Wickey','','English',["Mystery"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+    #addBook('Amintiri din Copilarie','Ion Creanga','','Romanian, Moldavian, Moldovan', ["Fable"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+    #addBook('Ion','Liviu Rebreanu','','Romanian, Moldavian, Moldovan',["Classic"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+    #addBook('Baltagul','Mihail Sadoveanu','','Romanian, Moldavian, Moldovan',["Folklore"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+    #addBook('Close to Heaven','John Wickey','','English',["Mystery"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
 
 
 
