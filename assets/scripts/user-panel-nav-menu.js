@@ -109,7 +109,7 @@ function updateDistanceFilter()
 
 function init()
 {
-    onLoadGoogleAuthApi()
+    onLoadGoogleAuthApi();
     sidePanelHTML = document.getElementById("sidePanel").innerHTML;
     document.getElementById("sidePanel").innerHTML = "";
     bookEntryLayout = document.getElementById("main").innerHTML;

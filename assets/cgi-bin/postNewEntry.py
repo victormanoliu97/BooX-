@@ -91,6 +91,8 @@ jsonObj = json.loads(arguments['json'].value)
 
 
 
+if 'apiKey' not in jsonObj.keys():
+    returnErrorMessage("You are not logged in.")
 if 'isbn' not in jsonObj.keys():
     returnErrorMessage("No ISBN field found.")
 if 'author' not in jsonObj.keys():
@@ -108,6 +110,8 @@ if 'interestedInTopics' not in jsonObj.keys():
 if 'expirationDate' not in jsonObj.keys():
     returnErrorMessage("No expirationDate field found.")
 
+if validate(jsonObj['apiKey']) == False:
+    returnErrorMessage("You have tried to sql inject")
 if validate(jsonObj['isbn']) == False:
     returnErrorMessage("You have tried to sql inject")
 if validate(jsonObj['author']) == False:
@@ -129,6 +133,8 @@ if validate(jsonObj['expirationDate']) == False:
 
 isbn = jsonObj['isbn']
 if (not xss.validate(isbn)):
+    returnErrorMessage("You have no power here, you xss injector")
+if (not xss.validate(jsonObj['apiKey'])):
     returnErrorMessage("You have no power here, you xss injector")
 interestedInTopics = jsonObj['interestedInTopics']
 for topic in interestedInTopics:
@@ -170,4 +176,6 @@ else:
     
 
 import databaseManager as DB
+bookID = DB.addBook(title,author,isbn,language,jsonObj['topics'],thumbnail)
+DB.addOffer(DB.getUserIDByApiKey(jsonObj['apiKey']),bookID,interestedInTopics,expirationDateText)
 returnSuccesMessage()

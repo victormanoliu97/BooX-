@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src = "https://apis.google.com/js/platform.js" async defer></script>
+    <script src = "scripts/login.js"></script>
     <script src = "scripts/jsonRequests.js"></script>
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src = "scripts/isoLanguages.js"></script>
     <script src = "scripts/topicList.js"></script>
-    <script src = "scripts/submitBookScript.js"></script>
+    <script src = "scripts/submitBookScript.js"></script> 
+    <meta name="google-signin-client_id" content="582910134035-ork4qn6r5u724n516a1j0kjh35vlfofq.apps.googleusercontent.com">
+    
 
     <script>
         console.log(topics)
@@ -29,7 +33,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>Submit a book</title>
 </head>
-<body>
+<body onload="init()">
     <table class="bookOfferContainer" id="{bookOfferID}">
         <tr >
             <td colspan="3" class="submitButton"><h3>Book Information</h1></td>

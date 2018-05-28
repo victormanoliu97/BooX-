@@ -89,6 +89,7 @@ function send()
     json = {};
     if (usingISBN)
     {
+        json.apiKey = currentUserApiKey;
         json.isbn = isbn_value;
         json.title = '';
         json.author = '';
@@ -100,6 +101,7 @@ function send()
     }
     else
     {
+        json.apiKey = currentUserApiKey;
         json.isbn = '';
         json.title = title_value;
         json.author = author_value;
@@ -128,4 +130,9 @@ function sendCallback(json)
 function validateTopic(topic)
 {
     return topics.indexOf(topic) > -1;
+}
+
+function init()
+{
+    onLoadGoogleAuthApi();
 }

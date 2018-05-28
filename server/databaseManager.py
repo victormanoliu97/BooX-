@@ -131,14 +131,20 @@ def addBook(title,author,isbn,language,topics,thumbnail):
     
     querystring = '''select id from languages where language='{language}' '''.format(language=language)
     cursor.execute(querystring)
-    langId = cursor.fetchone()[0]
+    langId = cursor.fetchone()
     if langId!=None:
         langId = langId + 1
     else:
         langId = 0 #if not found, make it unknown
 
+    print(bookId)
+    print(title.encode("utf-8"))
+    print(author[0].encode('utf-8'))
+    print(isbn)
+    print(langId)
+    print(thumbnail.encode("utf-8"))
     querystring = '''insert into books (id,title,author,isbn,languageid,thumbnail_url) values ({id},'{title}','{author}','{isbn}','{language}','{thumbnail_url}')'''.format(
-        id=bookId,title=title,author=author,isbn=isbn,language=langId,thumbnail_url=thumbnail)
+        id=bookId,title=title,author=author[0],isbn=isbn,language=langId,thumbnail_url=thumbnail)
     cursor.execute(querystring)
 
     for topic in topics:
@@ -154,6 +160,13 @@ def addBook(title,author,isbn,language,topics,thumbnail):
         cursor.execute(querystring)
     conn.commit()
     return bookId
+
+def getUserIDByApiKey(key):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring='select ID from users where APIKEY={key}'.format(key=key)
+    cursor.execute(querystring)
+    return cursor.fetchone()[0]
 
 def getOffers(id='',user='',filters=['','',''],offset=0,fetchSize=80):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
