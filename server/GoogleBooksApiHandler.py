@@ -58,13 +58,10 @@ def searchForBookByISBN(isbn):
     jsonRoot = json.loads(ApiResponse)
     totalResults = jsonRoot['totalItems']
     if totalResults==0:
-        print('invalid isbn')
         return (0,None)
     elif totalResults==1:
-        print('found the right book')
         return (1,jsonRoot['items'][0])
     else:
-        print('found more books')
         return (len(jsonRoot['items']),jsonRoot['items'])
 
 def searchForBookByName(name):
@@ -72,13 +69,10 @@ def searchForBookByName(name):
     jsonRoot = json.loads(ApiResponse)
     totalResults = jsonRoot['totalItems']
     if totalResults==0:
-        print('invalid isbn')
         return (0,None)
     elif totalResults==1:
-        print('found the right book')
         return (1,jsonRoot['items'][0])
     else:
-        print('found more books')
         return (len(jsonRoot['items']),jsonRoot['items'])
 
 if __name__=='__main__':

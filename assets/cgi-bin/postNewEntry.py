@@ -30,7 +30,7 @@ def returnSuccesMessage():
 def validateISBN(text):
     if not (len(text)==10 or len(text)==13):
         returnErrorMessage("Your ISBN does not have a valid length")
-    if re.match(r'[0-9]+X?',text)==None:
+    if len(re.findall(r'[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]([0-9][0-9][0-9])?([0-9]|X)',text))==0:
         returnErrorMessage("Your ISBN does not match the syntax.")
     apiResult = GBooks.searchForBookByISBN(text)
     returnCode = apiResult[0]
@@ -53,6 +53,14 @@ def validateTopics(objectCollection):
     topics = Tpc.getTopics()
     if len(objectCollection)==0:
         returnErrorMessage("You did not select any topic.")
+    for topic in objectCollection:
+        if topic not in topics:
+            returnErrorMessage("Your topic is invalid.")
+
+def validateInterestedTopics(objectCollection):
+    topics = Tpc.getTopics()
+    if len(objectCollection)==0:
+        returnErrorMessage("You did not select any interested topic.")
     for topic in objectCollection:
         if topic not in topics:
             returnErrorMessage("Your topic is invalid.")
@@ -132,7 +140,7 @@ if (not xss.validate(expirationDateText)):
 
 
 validateDate(expirationDateText)
-validateTopics(interestedInTopics)
+validateInterestedTopics(interestedInTopics)
 
 if isbn!="":
     book = validateISBN(isbn)

@@ -90,6 +90,13 @@ function send()
     if (usingISBN)
     {
         json.isbn = isbn_value;
+        json.title = '';
+        json.author = '';
+        json.language = '';
+        json.topics = '';
+        json.thumbnail = '';
+        json.interestedInTopics = interestedTopics;
+        json.expirationDate = exipration_date_value;
     }
     else
     {
