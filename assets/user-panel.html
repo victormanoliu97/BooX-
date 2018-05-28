@@ -35,6 +35,11 @@
          });
 <<<<<<< HEAD
          });
+=======
+
+        function myRedirect() {
+            window.location.replace("userOffersTemplate.html");
+        }
 >>>>>>> ce83f17a9669b27538afa80fe7bcf347da81cf6e
       </script>
 
@@ -44,6 +49,7 @@
 <body onload="init()">
 
 <div id="sidePanel" class="side">
+    <div id="profileImage"><a href="#" onclick="myRedirect()"></a></div>
     <a href="#"><i class="fas fa-plus" onclick="return createPopup('submitBookForm.html')"></i></a>
     <a href="#"><i class="fas fa-chart-bar" onclick="return createPopup('getStatisticsForm.html')"></i></a>
     <a href="#"><i class="fas fa-map-marker-alt" onclick="getUserGeoLocation()" id="location-id"></i></a>

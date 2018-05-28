@@ -119,5 +119,26 @@ function init()
 <<<<<<< HEAD
     post({},'cgi-bin/getBooks.py',function(response){console.log(response);});
 =======
+    console.log("a");
+    for (var i=0;i<30;i++)
+    {
+        var container = document.createElement("div");
+        container.style.width = "15em";
+        container.style.height = "12em";
+        container.style.margin = "auto";
+        container.style.padding = "0.5em";
+        container.innerHTML = bookEntryLayout;
+        document.getElementById("main").appendChild(container);
+    }
+}
+
+
+function createUserOffersPopup(url) {
+    var newWindow = window.open(url, 'bookOffer', 'height=300, width=700');
+
+    if (window.focus) {
+        newWindow.focus();
+    }
+    return false;
 >>>>>>> ce83f17a9669b27538afa80fe7bcf347da81cf6e
 }
