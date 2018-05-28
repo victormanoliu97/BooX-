@@ -5,7 +5,6 @@ def getLanguages():
     with open(languagesFile,'r',encoding="utf8") as file:
         languagesDict = json.load(file)
     languages = []
-    print(languagesDict)
     for language in languagesDict:
         languages.append(languagesDict[language]['name'])
 

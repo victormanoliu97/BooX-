@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src = "scripts/jsonRequests.js"></script>
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src = "scripts/isoLanguages.js"></script>
-    <script src = "scripts/genreList.js"></script>
+    <script src = "scripts/topicList.js"></script>
     <script src = "scripts/submitBookScript.js"></script>
 
     <script>
-        console.log(languages)
+        console.log(topics)
          $(function() {
             $( "#languages" ).autocomplete({
                source: languages
             });
-            $( "#genres" ).autocomplete({
-               source: genres
+            $( "#topics" ).autocomplete({
+               source: topics
+            });
+            $( "#intrestedTopics" ).autocomplete({
+               source: topics
             });
          });
       </script>
@@ -47,8 +51,8 @@
             <td class="sidePanel">Topics</td>
             <td class="form">
                 <input class="textInput" id="topics" onkeyup="validateForm()">
-                <div class="offerIcon" style="width:2em;padding: 5px;margin-left: 10px;text-align: center;border-radius: 10px;"><i class="fa fa-plus-circle"></i></div>
-                <p style="font-size: 1.25em; margin-top: 2px; margin-bottom: 2px; padding-left: 10px;" id="selectedGenres">Selected Genres:</p>
+                <div class="offerIcon" onclick="addBookTopic()" style="width:2em;padding: 5px;margin-left: 10px;text-align: center;border-radius: 10px;"><i class="fa fa-plus-circle"></i></div>
+                <p style="font-size: 1.25em; margin-top: 2px; margin-bottom: 2px; padding-left: 10px;" id="selectedTopics">Selected Topics:</p>
             </td>
         </tr>
         <tr>
@@ -73,17 +77,17 @@
         <tr>
             <td class="sidePanel">Interested In the following topics</td>
             <td class="form">
-                <input class="textInput" id="genres">
-                <div class="offerIcon" style="width:2em;padding: 5px;margin-left: 10px;text-align: center;border-radius: 10px;"><i class="fa fa-plus-circle"></i></div>
-                <p style="font-size: 1.25em; margin-top: 2px; margin-bottom: 2px; padding-left: 10px;" id="selectedGenres">Selected Genres:</p>
+                <input class="textInput" id="intrestedTopics">
+                <div class="offerIcon"  onclick="addIntrestedTopic()" style="width:2em;padding: 5px;margin-left: 10px;text-align: center;border-radius: 10px;"><i class="fa fa-plus-circle"></i></div>
+                <p style="font-size: 1.25em; margin-top: 2px; margin-bottom: 2px; padding-left: 10px;" id="selectedIntrestedTopics">Selected Genres:</p>
             </td>
         </tr>
         <tr>
             <td class="sidePanel">Expiration Date</td>
-            <td class="form"><input type="date" class="textInput" id="languages"></td>
+            <td class="form"><input type="date" class="textInput" id="expiration-date"></td>
         </tr>
         <tr >
-            <td colspan="3" class="submitButton"><a href="#"><div class="submitButton offerIcon"><i class="fa fa-check-circle"></i></div></a></td>
+            <td colspan="3" class="submitButton"><a href="#"><div onclick="send()" class="submitButton offerIcon"><i class="fa fa-check-circle"></i></div></a></td>
         </tr>
     </table>
 </body>
