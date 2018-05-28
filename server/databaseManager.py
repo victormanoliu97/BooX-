@@ -189,7 +189,6 @@ def getOffers(id='',searchLike='',user='',filters=['','']):
         where = where + ' and b.languageid=t.id and t.language={language}'.format(language=getLanguageId(filters[1]))
     querystring = '''select o.id, o.proposer_id, o.book_id, o.interested_topic_list, o.expiration_date, o.done from offers o, books b{joins} where o.book_id=b.id {wheres}'''.format(joins=join,wheres=where)
     cursor.execute(querystring)
-    print(querystring)
     cursorResults = cursor.fetchall()
     result = []
     for entry in cursorResults:
@@ -201,7 +200,6 @@ def getOffers(id='',searchLike='',user='',filters=['','']):
         data['expiration'] = entry[4]
         data['done'] = entry[5]
         result.append(data)
-    print(len(result))
     return result
 
 def getInterestedTopics(id):

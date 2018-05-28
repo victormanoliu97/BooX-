@@ -116,7 +116,7 @@ function init()
     document.getElementById("main").innerHTML = "";
     filterContainerHTML = document.getElementById("filterContainer").innerHTML;
     document.getElementById("filterContainer").innerHTML = "";
-    post({},'cgi-bin/getBooks.py',function(response){console.log(response);});
+    post({},'cgi-bin/getBooks.py',populate);
     // for (var i=0;i<30;i++)
     // {
     //     var container = document.createElement("div");
@@ -137,4 +137,34 @@ function createUserOffersPopup(url) {
         newWindow.focus();
     }
     return false;
+}
+
+function myRedirect() {
+    window.location.replace("userOffersTemplate.html");
+}
+
+function populate(response)
+{
+    console.log(response);
+    response = JSON.parse(response);
+    console.log(response.type);
+    if (response.type=='success')
+    {
+        document.getElementById("main").innerHTML = "";
+        response.data.forEach(element => {
+            var container = document.createElement("div");
+            container.style.width = "15em";
+            container.style.height = "12em";
+            container.style.margin = "auto";
+            container.style.padding = "0.5em";
+            container.innerHTML = bookEntryLayout;
+            container.getElementsByClassName("bookViewTitle").innerText = element.book.title;
+            container.getElementsByClassName("bookViewAuthor").innerText = element.book.author;
+            document.getElementById("main").appendChild(container);
+        });
+    }
+    else
+    {
+        document.getElementById("main").innerHTML = "No Offers at the moment. You can be the first one to publish one. Just click on the plus sign";
+    }
 }

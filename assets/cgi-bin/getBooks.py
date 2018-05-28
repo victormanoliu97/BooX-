@@ -54,4 +54,7 @@ if (not sql.validate(max_distance)):
     returnErrorMessage("You have no power here, you sql injector")
 
 result = DB.getOffers(searchLike=search,filters=[topic,language])
-pprint(result)
+response = {}
+response['type'] = 'success'
+response['data'] = result;
+print(response)
