@@ -116,20 +116,17 @@ function init()
     document.getElementById("main").innerHTML = "";
     filterContainerHTML = document.getElementById("filterContainer").innerHTML;
     document.getElementById("filterContainer").innerHTML = "";
-<<<<<<< HEAD
     post({},'cgi-bin/getBooks.py',function(response){console.log(response);});
-=======
-    console.log("a");
-    for (var i=0;i<30;i++)
-    {
-        var container = document.createElement("div");
-        container.style.width = "15em";
-        container.style.height = "12em";
-        container.style.margin = "auto";
-        container.style.padding = "0.5em";
-        container.innerHTML = bookEntryLayout;
-        document.getElementById("main").appendChild(container);
-    }
+    // for (var i=0;i<30;i++)
+    // {
+    //     var container = document.createElement("div");
+    //     container.style.width = "15em";
+    //     container.style.height = "12em";
+    //     container.style.margin = "auto";
+    //     container.style.padding = "0.5em";
+    //     container.innerHTML = bookEntryLayout;
+    //     document.getElementById("main").appendChild(container);
+    // }
 }
 
 
@@ -140,5 +137,4 @@ function createUserOffersPopup(url) {
         newWindow.focus();
     }
     return false;
->>>>>>> ce83f17a9669b27538afa80fe7bcf347da81cf6e
 }

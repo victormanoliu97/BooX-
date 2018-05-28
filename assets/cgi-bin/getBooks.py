@@ -19,35 +19,12 @@ def returnErrorMessage(text):
     print(json.dumps(response))
     exit(0)
 
-<<<<<<< HEAD
 jsonObj = {}
 if 'json' not in arguments.keys():
     returnErrorMessage("No JSON found.")
 jsonObj = json.loads(arguments['json'].value)
 if 'search' not in jsonObj.keys():
     jsonObj['search'] = ''
-=======
-def returnSucces():
-    response = {}
-    response['type'] = 'success'
-
-    topic = jsonObj['topic']
-    language = jsonObj['language']
-    max_distance = jsonObj['max_distance'] 
-
-    response['message'] = dbMan.getOffers(topic, language, max_distance)
-
-    if response['message'] == "" :
-        returnErrorMessage("No books wore find")
-
-    print(json.dumps(response))
-    exit(0)
-
-topic = jsonObj['topic']
-language = jsonObj['language']
-max_distance = jsonObj['max_distance'] 
-
->>>>>>> ce83f17a9669b27538afa80fe7bcf347da81cf6e
 if 'topic' not in jsonObj.keys():
     jsonObj['topic'] = ''
 if 'language' not in jsonObj.keys():
@@ -65,7 +42,6 @@ if (not xss.validate(topic)):
     returnErrorMessage("You have no power here, you xss injector")
 if (not xss.validate(language)):
     returnErrorMessage("You have no power here, you xss injector")
-<<<<<<< HEAD
 if (not xss.validate(max_distance)):
     returnErrorMessage("You have no power here, you xss injector")
 if (not sql.validate(search)):
@@ -79,10 +55,3 @@ if (not sql.validate(max_distance)):
 
 result = DB.getOffers(searchLike=search,filters=[topic,language])
 pprint(result)
-=======
-
-
-
-returnSucces()
-
->>>>>>> ce83f17a9669b27538afa80fe7bcf347da81cf6e
