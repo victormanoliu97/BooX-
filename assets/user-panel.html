@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <title>User-Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="scripts/jsonRequests.js"></script>
     <link rel="stylesheet" href="styles/user-panel-style.css">
     <link rel="stylesheet" href="styles/bookView.css">
     <link rel="stylesheet" href="styles/general-style.css">
     <script src="scripts/user-panel-nav-menu.js"></script>
     <script src="scripts/ownAPIHandler.js"></script>
     <script src="scripts/locationHandler.js"></script>
+    <script src="scripts/getFilters.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -56,6 +58,7 @@
             <!-- <div id="filterExchangeWith"><p>Exchange with:</p><input type="text" id="exchange"></div> -->
             <div id="filterGenre"><p>Topic:</p><input type="text" id="genres"></div>
             <div id="filterLanguage"><p>Language:</p><input type="text" id="languages"></div>
+            <a id="filterLabel" onclick="getFilters()">Apply Filters</a>
      </div>
 </div>
 
