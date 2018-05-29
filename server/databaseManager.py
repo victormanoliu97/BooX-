@@ -279,10 +279,10 @@ if __name__=='__main__':
     # addUser('pandaismyname1@localhost.com','cevaCod007')
     # updateUserLocation('pandaismyname1@localhost.com',23.5332,12.4432)
     addBook('Perete','Costel','','Afrikaans',["Computers", "Technology & Engineering"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
-    #addBook('Amintiri din Copilarie','Ion Creanga','','Romanian, Moldavian, Moldovan', ["Fable"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
-    #addBook('Ion','Liviu Rebreanu','','Romanian, Moldavian, Moldovan',["Classic"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
-    #addBook('Baltagul','Mihail Sadoveanu','','Romanian, Moldavian, Moldovan',["Folklore"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
-    #addBook('Close to Heaven','John Wickey','','English',["Mystery"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+    addBook('Amintiri din Copilarie','Ion Creanga','','Romanian, Moldavian, Moldovan', ["Fable"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+    addBook('Ion','Liviu Rebreanu','','Romanian, Moldavian, Moldovan',["Classic"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+    addBook('Baltagul','Mihail Sadoveanu','','Romanian, Moldavian, Moldovan',["Folklore"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
+    addBook('Close to Heaven','John Wickey','','English',["Mystery"],"https://tauruspet.med.yale.edu/staff/edm42/book-cover1.jpg")
 
 
 
@@ -294,7 +294,7 @@ if __name__=='__main__':
     # incrementalLanguages = consolemenu.items.FunctionItem('Build Languages Table',buildLanguages)
     
     # incrementalBuilderMenu.append_item(incrementalTopics)
-    # incrementalBuilderMenu.append_item(incrementalLanguages)
+    # incrementalBuilderMenu.append_item(incrementalLanguages)python
 
     # incrementalBuilder = consolemenu.items.SubmenuItem("Build Database incrementally", submenu=incrementalBuilderMenu)
 
@@ -303,4 +303,3 @@ if __name__=='__main__':
 
     # menu.start()
     # menu.join()
-

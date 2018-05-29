@@ -17,6 +17,7 @@ function onLoadGoogleAuthApi() {
           currentUserApiKey = profile.getId();
           currentUserEmail = profile.getEmail();
           post({'email':currentUserEmail,'apiKey':currentUserApiKey},'cgi-bin/users.py',function(response){console.log(response)});
+          // post({'email':currentUserEmail},'cgi-bin/userOffers.py',function(response){console.log(response)});
           profilePicture = "url("+profile.getImageUrl()+")";
           if(document.getElementById("profileImage")!=null)
           {

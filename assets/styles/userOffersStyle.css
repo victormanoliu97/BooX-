@@ -1,47 +1,3 @@
-.bookViewContainer
-{
-    width: 100%;
-    height: 100%;
-    display: inline-grid;
-    grid-template-areas:
-            'image'
-            'info';
-    grid-template-rows: 70% 30%;
-
-}
-.bookViewInfo
-{
-    grid-area: info;
-    width: 100%;
-    height: 130%;
-    background-color: rgba(43, 45, 66, 1);
-    color: rgba(237, 242, 244, 1);
-}
-.bookViewImage
-{
-    grid-area: image;
-    width: 100%;
-    height: 100%;
-    background-image: url("https://cdn-images-1.medium.com/max/1024/1*OQXqTrTpXynrt85LeuaCnA.jpeg");
-    background-size: 100% 100%;
-}
-
-.bookViewAuthor
-{
-    margin: 0px;
-    padding-left: 0.4em;
-    text-decoration: none;
-    color: #FFFFFF;
-}
-.bookViewTitle
-{
-    margin: 0px;
-    font-size: 1.35em;
-    padding-top: 0.1em;
-    padding-left: 0.25em;
-}
-
-
 
 /*
 
@@ -74,7 +30,7 @@ body {
 }
 #main {
     background-color: rgba(237, 242, 244, 1);
-    padding: 20px 20px;
+    padding: 20px 10px;
     grid-area: main;
     display: inline-grid;
     grid-template-columns: auto auto auto auto auto;
@@ -209,6 +165,7 @@ input[type=text] {
 }
 #profileImage
 {
+    border-radius: 99999px;
     background-size:cover;
     padding: 8px 8px 8px 8px;
     width: 3em;
@@ -260,6 +217,55 @@ Other
     }
 }
 
+.bookViewContainer
+{
+    width: 100%;
+    height: 100%;
+    display: inline-grid;
+    grid-template-areas:
+            'image'
+            'info';
+    grid-template-rows: 70% 30%;
+
+}
+.bookViewInfo
+{
+    grid-area: info;
+    width: 100%;
+    height: 130%;
+    background-color: rgba(43, 45, 66, 1);
+    color: rgba(237, 242, 244, 1);
+}
+.bookViewImage
+{
+    grid-area: image;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://cdn-images-1.medium.com/max/1024/1*OQXqTrTpXynrt85LeuaCnA.jpeg");
+    background-size: 100% 100%;
+}
+
+.bookViewAuthor
+{
+    margin: 0px;
+    padding-left: 0.4em;
+}
+.bookViewTitle
+{
+    margin: 0px;
+    font-size: 1.35em;
+    padding-top: 0.1em;
+    padding-left: 0.25em;
+}
+.bookdone
+{
+    margin: 0px;
+    font-size: 1.35em;
+    padding-top: 0.1em;
+    padding-left: 0.25em;
+    background-color: red;
+    color: red;
+}
 
 /* SIDEPANEL , SEARCHBAR , FOOTER AND A GENETIC BODY */
 
@@ -313,7 +319,7 @@ input[type=text] {
 }
 .button:hover
 {
-    background-color: rgba(43, 45, 66, 1);
+    background-color: green;
     color: rgba(237, 242, 244, 1);
 }
 
@@ -450,8 +456,6 @@ input[type=text] {
     }
 }
 
-#done-id {
-    text-decoration: none;
-    text-decoration-color: white;
-}
+
+
 

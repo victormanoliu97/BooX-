@@ -1,6 +1,6 @@
-function search() {
+function searchWithFilters() {
     document.getElementById("main").innerHTML = "";
-    var topic = document.getElementById("genres").value;
+    var topic = document.getElementById("topics").value;
     var language = document.getElementById("languages").value;
     var max_distance = document.getElementById("distance").value;
 
