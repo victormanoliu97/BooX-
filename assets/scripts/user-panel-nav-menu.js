@@ -109,7 +109,6 @@ function updateDistanceFilter()
 
 function init()
 {
-    onLoadGoogleAuthApi();
     sidePanelHTML = document.getElementById("sidePanel").innerHTML;
     document.getElementById("sidePanel").innerHTML = "";
     bookEntryLayout = document.getElementById("main").innerHTML;
@@ -127,6 +126,10 @@ function init()
     //     container.innerHTML = bookEntryLayout;
     //     document.getElementById("main").appendChild(container);
     // }
+}
+
+function userOfferLogger() {
+    console.log('Ceva');
 }
 
 
