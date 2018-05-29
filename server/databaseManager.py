@@ -121,7 +121,11 @@ def findUserByEmail(email):
     cursor = conn.cursor()
     querystring="select id from users where email='{email}'".format(email=email)
     cursor.execute(querystring)
-    return cursor.fetchone()
+    try:
+        result = cursor.fetchone()[0]
+        return result
+    except:
+        return None
 
 def addBook(title,author,isbn,language,topics,thumbnail):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
