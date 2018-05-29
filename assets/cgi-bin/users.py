@@ -12,7 +12,12 @@ print("Content-Type: text/html\n")
 
 arguments = cgi.FieldStorage()
 jsonObj = json.loads(arguments['json'].value)
+
 apiKey = jsonObj['apiKey']
 email = jsonObj['email']
+
 if(DB.findUserByEmail(email)==None):
     DB.addUser(email,apiKey)
+
+
+
