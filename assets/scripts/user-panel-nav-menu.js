@@ -104,11 +104,13 @@ function createPopup(url) {
 function updateDistanceFilter()
 {
     document.getElementById("distanceLabel").innerText = "Max distance: " + document.getElementById("distance").value
+    searchWithFilters();
 }
 
 
 function init()
 {
+    onLoadGoogleAuthApi();
     sidePanelHTML = document.getElementById("sidePanel").innerHTML;
     document.getElementById("sidePanel").innerHTML = "";
     bookEntryLayout = document.getElementById("main").innerHTML;
@@ -120,7 +122,7 @@ function init()
     // {
     //     var container = document.createElement("div");
     //     container.style.width = "15em";
-    //     container.style.height = "12em";
+    //     container.style.height = "21.2130em";
     //     container.style.margin = "auto";
     //     container.style.padding = "0.5em";
     //     container.innerHTML = bookEntryLayout;
@@ -157,7 +159,7 @@ function populate(response)
         response.data.forEach(element => {
             var container = document.createElement("div");
             container.style.width = "15em";
-            container.style.height = "12em";
+            container.style.height = "21.2130em";
             container.style.margin = "auto";
             container.style.padding = "0.5em";
             container.innerHTML = bookEntryLayout;
@@ -166,9 +168,13 @@ function populate(response)
             container.getElementsByClassName("bookViewImage")[0].style.backgroundImage = "url("+element.book.thumbnail+")";
             document.getElementById("main").appendChild(container);
         });
-    }
-    else
+    }    
+    if (response.type=='empty')
     {
-        document.getElementById("main").innerHTML = "No Offers at the moment. You can be the first one to publish one. Just click on the plus sign";
+        document.getElementById("main").innerHTML = '<h1 style="color:orange;">There are no books that match the filters</h1>'
+    }
+    if (response.type=='error')
+    {
+        document.getElementById("main").innerHTML = '<h1 style="color:red;">An error occured. We are sorry. :(</h1>'
     }
 }

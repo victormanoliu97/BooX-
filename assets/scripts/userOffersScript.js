@@ -29,7 +29,7 @@ function populate(response)
         response.data.forEach(element => {
             var container = document.createElement("div");
             container.style.width = "15em";
-            container.style.height = "12em";
+            container.style.height = "21.2130em";
             container.style.margin = "auto";
             container.style.padding = "0.5em";
             container.innerHTML = bookEntryLayout;

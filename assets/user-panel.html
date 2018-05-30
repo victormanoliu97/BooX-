@@ -52,15 +52,14 @@
 <div id="header">
     <a id="sidePanelOpenButton" style="padding: 0.2em;font-size: 2em" onclick="switchNav()"><i id="sidePanelButton" class="fas fa-arrow-circle-right"></i></a>
     <a id="logo" href="index.html">BooX</a>
-     <input id="search-bar" type="text" placeholder="Search books">
+     <input id="search-bar" type="text" placeholder="Search books" oninput="searchWithFilters()">
      <div></div>
      <div><a id="filterLabel" onclick="switchFilters()">Show Filters</a></div>
      <div id="filterContainer">
-            <div id="filterDistance"><p id="distanceLabel">Max Distance:</p><input type="range" oninput="updateDistanceFilter()" id="distance" min="10" max="500"> </div>
+            <div id="filterDistance"><p id="distanceLabel">Max Distance:</p><input type="range" oninput="updateDistanceFilter()" id="distance" min="0" max="500", value="0"> </div>
             <!-- <div id="filterExchangeWith"><p>Exchange with:</p><input type="text" id="exchange"></div> -->
-            <div id="filterTopics"><p>Topic:</p><input type="text" id="topics"></div>
-            <div id="filterLanguage"><p>Language:</p><input type="text" id="languages"></div>
-            <a id="filterLabel" onclick="searchWithFilters()">Search</a>
+            <div id="filterTopics"><p>Topic:</p><input type="text" id="topics" oninput="searchWithFilters()"></div>
+            <div id="filterLanguage"><p>Language:</p><input type="text" id="languages" oninput="searchWithFilters()"></div>
      </div>
 </div>
 

@@ -131,6 +131,10 @@ function validateTopic(topic)
 {
     return topics.indexOf(topic) > -1;
 }
+function validateLanguage(language)
+{
+    return languages.indexOf(language) > -1;
+}
 
 function init()
 {

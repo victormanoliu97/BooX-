@@ -4,6 +4,7 @@ import os
 import consolemenu
 import languages
 import datetime
+from pprint import pprint
 def sampleOracleConnection():
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521')
     cursor = conn.cursor()
@@ -184,14 +185,14 @@ def getOffers(id='',searchLike='',user='',filters=['','']):
         where = ' and o.proposer_id=u.id and u.id={user}'.format(user=user)
     else:
         where = ' and o.done=0'
-    if searchLike!='':  #Topics
-        where = where + '''and '%{search}%' like b.title or '%{search}%' like b.author'''.format(search=searchLike)
+    if searchLike!='':  #SearchQuery
+        where = where + ''' and (upper(b.title) like '%{search}%' or upper(b.author) like '%{search}%') '''.format(search=searchLike.upper())
     if filters[0]!='':  #Topics
-        join = join + ', topic_books_lists t'
+        join = join + ', TOPICS_BOOKS_LISTS t'
         where = where + ' and b.id=t.book_id and t.topic_id={topic}'.format(topic=getTopicId(filters[0]))
     if filters[1]!='':  #Languages
         join = join + ', languages l'
-        where = where + ' and b.languageid=t.id and t.language={language}'.format(language=getLanguageId(filters[1]))
+        where = where + " and b.languageid=l.id and l.id={language}".format(language=getLanguageId(filters[1]))
     querystring = '''select o.id, o.proposer_id, o.book_id, o.interested_topic_list, o.expiration_date, o.done from offers o, books b{joins} where o.book_id=b.id {wheres}'''.format(joins=join,wheres=where)
     cursor.execute(querystring)
     cursorResults = cursor.fetchall()
@@ -232,6 +233,25 @@ def getBook(id):
     data['thumbnail'] = cursorResult[3]
     return data
 
+def getUserPosition(id):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring='select id, pos_x, pos_y from users where id={id}'.format(id=id)
+    cursor.execute(querystring)
+    cursorResult = cursor.fetchone()
+    return {'id':cursorResult[0],'x':cursorResult[1],'y':cursorResult[2]}
+
+def getAllUserPositionExcept(id):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring='select id, pos_x, pos_y from users where id!={id}'.format(id=id)
+    cursor.execute(querystring)
+    cursorResult = cursor.fetchall()
+    result = []
+    for entry in cursorResult:
+        result.append({'id':entry[0],'x':entry[1],'y':entry[2]})
+    return result
+
 def getUserEmail(id):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
@@ -245,7 +265,7 @@ def getUserEmail(id):
 def getTopicId(text):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
-    querystring = '''select id from topics where name={topic}'''.format(topic=text)
+    querystring = '''select id from topics where name='{topic}' '''.format(topic=text)
     cursor.execute(querystring)
     try:
         topicID = cursor.fetchone()[0]
