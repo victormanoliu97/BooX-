@@ -66,6 +66,7 @@ create table OFFERS
 	PROPOSER_ID NUMBER not null,
 	BOOK_ID NUMBER not null,
 	INTERESTED_TOPIC_LIST NUMBER,
+	CREATION_DATE DATE not null,
 	EXPIRATION_DATE DATE not null,
 	DONE NUMBER(1) not null
 )
