@@ -83,8 +83,11 @@ def addOffer(propoeserID,bookID,intrestedInTopics,expirationDate):
             querystring = '''insert into TOPICS_INTERSTED_LISTS (LIST_ID,topic_id) values({listId},{topicId})'''.format(listId=listId,topicId=topicId)
             cursor.execute(querystring)
 
-    querystring = '''insert into offers (id,PROPOSER_ID,BOOK_ID,INTERESTED_TOPIC_LIST,EXPIRATION_DATE,DONE) values ({id},{PROPOSER_ID},{BOOK_ID_1},{INTERESTED_TOPIC_LIST},to_Date('{EXPIRATION_DATE}','yyyy-mm-dd'),0)'''.format(
-        id=offerID,PROPOSER_ID=propoeserID,BOOK_ID_1=bookID,INTERESTED_TOPIC_LIST=listId,EXPIRATION_DATE=expirationDate)
+    import datetime
+    now = datetime.datetime.now()
+
+    querystring = '''insert into offers (id,PROPOSER_ID,BOOK_ID,INTERESTED_TOPIC_LIST, CREATION_DATE, EXPIRATION_DATE,DONE) values ({id},{PROPOSER_ID},{BOOK_ID_1},{INTERESTED_TOPIC_LIST}, to_Date('{CREATION_DATE}','dd.mm.yyyy'), to_Date('{EXPIRATION_DATE}','yyyy-mm-dd'),0)'''.format(
+        id=offerID,PROPOSER_ID=propoeserID,BOOK_ID_1=bookID,INTERESTED_TOPIC_LIST=listId, CREATION_DATE=str(now.day)+'.'+str(now.month)+'.'+str(now.year),  EXPIRATION_DATE=expirationDate)
     cursor.execute(querystring)
 
     conn.commit()
