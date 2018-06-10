@@ -126,11 +126,21 @@ function populate(response)
         response.data.forEach(element => {
             var container = document.createElement("div");
             container.style.width = "15em";
-            container.style.height = "21.2130em";
+            container.style.height = "fit-content";
             container.style.margin = "auto";
             container.style.padding = "0.5em";
             container.innerHTML = bookEntryLayout;
             container.getElementsByClassName("bookViewTitle")[0].innerText = element.book.title;
+            if(element.done==0)
+            {
+                container.getElementsByClassName("submitButton")[0].onclick = function(){terminateOffer(element.id)};
+                container.getElementsByClassName("submitButton")[0].id = "done_button_"+element.id;
+            }
+            else
+            {
+                container.getElementsByClassName("submitButton")[0].remove()
+            }
+            // addListener(container.getElementsByClassName("button")[0],'click',terminateOffer(element.book.id));
             container.getElementsByClassName("bookViewAuthor")[0].innerText = element.book.author;
             container.getElementsByClassName("bookViewImage")[0].style.backgroundImage = "url("+element.book.thumbnail+")";
             document.getElementById("main").appendChild(container);
@@ -139,5 +149,25 @@ function populate(response)
     else
     {
         document.getElementById("main").innerHTML = "No Offers at the moment. You can be the first one to publish one. Just click on the plus sign";
+    }
+}
+
+function terminateOffer(id)
+{
+    put({'id':id,'apikey':currentUserApiKey},'cgi-bin/done.py',terminateOfferCallback);
+}
+function terminateOfferCallback(response)
+{
+    console.log(response)
+    response = JSON.parse(response);
+    if(response.type=='success')
+    {
+        console.log("done_button_"+response.id)
+        document.getElementById("done_button_"+response.id).remove();
+    }
+    else if(response.type=='error')
+    {
+        document.body.innerHTML = '<h1 id="message">'+response.message+"</h1>";
+        document.getElementById("message").style.color = 'red';
     }
 }

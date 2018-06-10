@@ -11,9 +11,9 @@
 }
 .bookViewInfo
 {
+    height: fit-content;
     grid-area: info;
     width: 100%;
-    height: 100%;
     background-color: rgba(43, 45, 66, 1);
     color: rgba(237, 242, 244, 1);
 }
@@ -21,7 +21,7 @@
 {
     grid-area: image;
     width: 100%;
-    height: 100%;
+    height: 21em;
     background-image: url("https://cdn-images-1.medium.com/max/1024/1*OQXqTrTpXynrt85LeuaCnA.jpeg");
     background-size: 100% 100%;
 }

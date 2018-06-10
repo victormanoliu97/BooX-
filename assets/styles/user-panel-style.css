@@ -172,6 +172,7 @@ input[type=text] {
     height: 3em;
     display: block;
     border-radius: 999999px;
+    cursor: pointer;
 }
 
 
