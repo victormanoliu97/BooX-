@@ -18,6 +18,13 @@ email = jsonObj['email']
 
 if(DB.findUserByEmail(email)==None):
     DB.addUser(email,apiKey)
+else:
+    DB.updateUserLastLogin(apiKey)
+
+response = {}
+response['type'] = 'success'
+response['message'] = int(DB.getUserNotifications(apiKey))
+print(json.dumps(response))
 
 
 

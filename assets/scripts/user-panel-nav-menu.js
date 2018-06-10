@@ -107,6 +107,17 @@ function updateDistanceFilter()
     searchWithFilters();
 }
 
+function startSnack() {
+    var x = document.getElementById("snackbar");
+    console.log("Testarea mea + " + x);
+    x.className = "show";
+}
+
+function closeSnack() {
+    var x = document.getElementById("snackbar");
+    x.className = "hidden";
+}
+
 
 function init()
 {
@@ -117,6 +128,17 @@ function init()
     filterContainerHTML = document.getElementById("filterContainer").innerHTML;
     document.getElementById("filterContainer").innerHTML = "";
     get({},'cgi-bin/getBooks.py',populate);
+
+    $(document).ready(function() {
+               var auth2 = null;
+               var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+
+               var notificationsBar = document.getElementById("snackbar").innerHTML;
+               document.getElementById("snackbar").innerHTML = "";
+               get({'email':currentUserEmail,'apiKey':currentUserApiKey}, 'cgi-bin/users.py', populate_notifications);
+               notificationsBar.className = "show";
+           });
+
     // for (var i=0;i<30;i++)
     // {
     //     var container = document.createElement("div");
@@ -175,5 +197,18 @@ function populate(response)
     if (response.type=='error')
     {
         document.getElementById("main").innerHTML = '<h1 style="color:red;">An error occured. We are sorry. :(</h1>'
+    }
+}
+
+function  populate_notifications(response) {
+    console.log(response);
+    response = JSON.parse(response);
+    console.log(response.type + " " + response['message'] + "HDHHDHDHDH");
+    if (response.type=='success') {
+        document.getElementById("snackbar").innerHTML = "Since your last login " + response['message'] + " offers have been posted" + "\n" + '<a href="#" id="close-snack"><h4>Close</h4></a>';
+        $('#close-snack').click(function() {
+            document.getElementById("snackbar").style.visibility = "hidden";
+        });
+        document.getElementById("snackbar").style.visibility = "visible";
     }
 }
