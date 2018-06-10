@@ -110,14 +110,13 @@ function updateDistanceFilter()
 
 function init()
 {
-    onLoadGoogleAuthApi();
     sidePanelHTML = document.getElementById("sidePanel").innerHTML;
     document.getElementById("sidePanel").innerHTML = "";
     bookEntryLayout = document.getElementById("main").innerHTML;
     document.getElementById("main").innerHTML = "";
     filterContainerHTML = document.getElementById("filterContainer").innerHTML;
     document.getElementById("filterContainer").innerHTML = "";
-    post({},'cgi-bin/getBooks.py',populate);
+    get({},'cgi-bin/getBooks.py',populate);
     // for (var i=0;i<30;i++)
     // {
     //     var container = document.createElement("div");

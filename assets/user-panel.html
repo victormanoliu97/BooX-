@@ -4,23 +4,9 @@
     <meta charset="UTF-8">
     <title>User-Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="scripts/jsonRequests.js"></script>
-    <link rel="stylesheet" href="styles/user-panel-style.css">
-    <link rel="stylesheet" href="styles/bookView.css">
-    <link rel="stylesheet" href="styles/general-style.css">
-    <script src="scripts/user-panel-nav-menu.js"></script>
-    <script src="scripts/ownAPIHandler.js"></script>
-    <script src="scripts/locationHandler.js"></script>
-    <script src="scripts/getFilters.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
-    
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="scripts/login.js"></script>
-    <meta name="google-signin-client_id" content="582910134035-ork4qn6r5u724n516a1j0kjh35vlfofq.apps.googleusercontent.com">
-    
+    <script src="scripts/jsonRequests.js"></script>
     <script src = "scripts/isoLanguages.js"></script>
     <script src = "scripts/topicList.js"></script>
     <script>
@@ -35,11 +21,25 @@
          });
         });
       </script>
+    <link rel="stylesheet" href="styles/user-panel-style.css">
+    <link rel="stylesheet" href="styles/bookView.css">
+    <link rel="stylesheet" href="styles/general-style.css">
+    <script src="scripts/user-panel-nav-menu.js"></script>
+    <script src="scripts/locationHandler.js"></script>
+    <script src="scripts/getFilters.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="scripts/login.js"></script>
+    <meta name="google-signin-client_id" content="582910134035-ork4qn6r5u724n516a1j0kjh35vlfofq.apps.googleusercontent.com">
+    
+
 
       
     <link href = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel = "stylesheet">
 </head>
-<body onload="init()">
+<body onload="onLoadGoogleAuthApi(init)">
 
 <div id="sidePanel" class="side">
     <div id="profileImage"><a href="#" onclick="myRedirect()"></a></div>

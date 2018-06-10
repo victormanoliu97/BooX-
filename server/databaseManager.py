@@ -171,7 +171,10 @@ def getUserIDByApiKey(key):
     cursor = conn.cursor()
     querystring="select ID from users where APIKEY='{key}'".format(key=key)
     cursor.execute(querystring)
-    return cursor.fetchone()[0]
+    result = cursor.fetchone()
+    if result==None:
+        return None
+    return result[0]
 
 def getOffers(id='',searchLike='',user='',filters=['','']):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")

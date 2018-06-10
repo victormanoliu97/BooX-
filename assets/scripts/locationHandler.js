@@ -7,16 +7,15 @@ function getUserGeoLocation() {
             var userLongitude = pos.coords.longitude;
 
             var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
-            currentUserEmail = profile.getEmail();
 
             console.log("My test location is: " + userLongitude + " " + userLatitude);
 
             json = {};
-            json.email = currentUserEmail;
+            json.apikey = currentUserApiKey;
             json.latitude = userLatitude;
             json.longitude = userLongitude;
 
-            post(json, 'cgi-bin/distanceHandler.py', sendCallback);
+            put(json, 'cgi-bin/distanceHandler.py', sendCallback);
             console.log(json);
         });
     }
@@ -31,11 +30,11 @@ function sendCallback(json) {
 
     if (json.type == 'error')
     {
-        console.log("Nu am reusit sa fac post-ul pe locatie");
+        console.log("Nu am reusit sa fac put-ul pe locatie");
     }
     if (json.type == 'success')
     {
-        console.log("Am reusit sa fac post-ul pe locatie");
+        console.log("Am reusit sa fac put-ul pe locatie");
     }
 }
 

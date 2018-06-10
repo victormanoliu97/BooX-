@@ -29,7 +29,7 @@ function searchWithFilters() {
     if(ok1&&ok2)
     {
         console.log('sending');
-        post(jsonToSend, destinationToSend, populate);
+        get(jsonToSend, destinationToSend, populate);
     }
 }
 

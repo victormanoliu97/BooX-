@@ -1,7 +1,7 @@
 var auth2 = null;
 var profilePicture = "";
 var currentUserApiKey = "";
-var currentUserEmail = ""
+var currentUserEmail = "";
 
 function onGoogleSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
@@ -9,10 +9,14 @@ function onGoogleSignIn(googleUser) {
     currentUserEmail = profile.getEmail();
     window.location.replace("user-panel.html");
   }
-function onLoadGoogleAuthApi() {
+function onLoadGoogleAuthApi(func) {
+  console.log('da')
     gapi.load('auth2', function() {
+      console.log('da')
       auth2 = gapi.auth2.init().then(function() {
+        console.log('da')
         if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+          console.log('da')
           var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
           currentUserApiKey = profile.getId();
           currentUserEmail = profile.getEmail();
@@ -23,7 +27,7 @@ function onLoadGoogleAuthApi() {
           {
             document.getElementById("profileImage").style.backgroundImage = profilePicture;
           }
-          
+          func();
         }
         else
         {

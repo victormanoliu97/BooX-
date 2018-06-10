@@ -4,41 +4,21 @@
     <meta charset="UTF-8">
     <title>User-Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="scripts/jsonRequests.js"></script>
     <link rel="stylesheet" href="styles/userOffersStyle.css">
-    <script src="scripts/user-panel-nav-menu.js"></script>
-    <script src="scripts/ownAPIHandler.js"></script>
-    <script src="scripts/locationHandler.js"></script>
-    <script src="scripts/getFilters.js"></script>
+    <script src="scripts/jsonRequests.js"></script>
     <script src="scripts/userOffersScript.js"></script>
+    <script src="scripts/locationHandler.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
     
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="scripts/login.js"></script>
     <meta name="google-signin-client_id" content="582910134035-ork4qn6r5u724n516a1j0kjh35vlfofq.apps.googleusercontent.com">
     
-    <script src = "scripts/isoLanguages.js"></script>
-    <script src = "scripts/topicList.js"></script>
-    <script>
-         $(function() {
-            $(function() {
-            $( "#languages" ).autocomplete({
-               source: languages
-            });
-            $( "#topics" ).autocomplete({
-               source: topics
-            });
-         });
-        });
-      </script>
-
-      
-    <link href = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel = "stylesheet">
 </head>
-<body onload="initialize()">
+
+<body onload="onLoadGoogleAuthApi(init)">
 
 <div id="sidePanel" class="side">
     <div id="profileImage"><a href="#" onclick="myRedirect()"></a></div>
@@ -51,14 +31,6 @@
 <div id="header">
     <!-- <a id="sidePanelOpenButton" style="padding: 0.2em;font-size: 2em" onclick="switchNav()"><i id="sidePanelButton" class="fas fa-arrow-circle-right"></i></a> -->
     <a id="logo" href="index.html">BooX</a>
-     <div></div>
-     <div id="filterContainer">
-            <div id="filterDistance"><p id="distanceLabel">Max Distance:</p><input type="range" oninput="updateDistanceFilter()" id="distance" min="10" max="500"> </div>
-            <!-- <div id="filterExchangeWith"><p>Exchange with:</p><input type="text" id="exchange"></div> -->
-            <div id="filterTopics"><p>Topic:</p><input type="text" id="topics"></div>
-            <div id="filterLanguage"><p>Language:</p><input type="text" id="languages"></div>
-            <a id="filterLabel" onclick="searchWithFilters()">Search</a>
-     </div>
 </div>
 
 
