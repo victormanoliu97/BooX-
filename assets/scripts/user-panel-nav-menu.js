@@ -180,10 +180,14 @@ function populate(response)
         response.data.forEach(element => {
             var container = document.createElement("div");
             container.style.width = "15em";
-            container.style.height = "21.2130em";
+            container.style.height = "fit-content";
             container.style.margin = "auto";
             container.style.padding = "0.5em";
             container.innerHTML = bookEntryLayout;
+            container.getElementsByClassName("bookViewContainer")[0].onclick = function(){
+                window.location.href = "mailto:"+element.email+"?subject=[BooX] Trade Deal&body=Hey there!\n I am intrested in your book \""+element.book.title+"\" by "+element.book.author+" for a trade deal!";
+            };
+            container.style.cursor="pointer";
             container.getElementsByClassName("bookViewTitle")[0].innerText = element.book.title;
             container.getElementsByClassName("bookViewAuthor")[0].innerText = element.book.author;
             container.getElementsByClassName("bookViewImage")[0].style.backgroundImage = "url("+element.book.thumbnail+")";

@@ -220,7 +220,7 @@ Other
 .bookViewContainer
 {
     width: 100%;
-    height: 100%;
+    height: fit-content;
     display: inline-grid;
     grid-template-areas:
             'image'
@@ -230,9 +230,9 @@ Other
 }
 .bookViewInfo
 {
+    height: fit-content;
     grid-area: info;
     width: 100%;
-    height: 130%;
     background-color: rgba(43, 45, 66, 1);
     color: rgba(237, 242, 244, 1);
 }
@@ -240,7 +240,7 @@ Other
 {
     grid-area: image;
     width: 100%;
-    height: 100%;
+    height: 21em;
     background-image: url("https://cdn-images-1.medium.com/max/1024/1*OQXqTrTpXynrt85LeuaCnA.jpeg");
     background-size: 100% 100%;
 }
@@ -428,6 +428,25 @@ input[type=text] {
 }
 .select-items div:hover {
     background-color: rgba(0, 0, 0, 0.1);
+}
+.submitButton
+{
+    position: relative;
+    bottom: 0;
+    font-size: 1.5em;
+    text-align:center;
+}
+.offerIcon
+{
+    border: 0px;
+    background-color: rgba(216, 0, 50, 1);
+    color: rgba(43, 45, 66, 1);
+    transition: all 0.2s;
+}
+.offerIcon:hover
+{
+    background-color: rgba(43, 45, 66, 1);
+    color: rgba(237, 242, 244, 1);
 }
 
 

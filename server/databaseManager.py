@@ -177,6 +177,24 @@ def addBook(title,author,isbn,language,topics,thumbnail):
     conn.commit()
     return bookId
 
+def hideOffer(id):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring="update offers set done=1 where id={id}".format(id=id)
+    cursor.execute(querystring)
+    conn.commit()
+
+
+def checkIfOfferBelongsToUser(id,userID):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring="select * from offers where id={id} and PROPOSER_ID={userID}".format(id=id,userID=userID)
+    cursor.execute(querystring)
+    result = cursor.fetchone()
+    if result!= None:
+        return True
+    return False
+
 def getUserIDByApiKey(key):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
