@@ -212,7 +212,7 @@ def getUserNotifications(apikey):
     cursor.execute(querystring)
     last_login = cursor.fetchone()[0]
 
-    querystring = "select count(ID) from offers where TO_DATE(CREATION_DATE, 'dd.mm.yyyy') > TO_DATE('{last_login}','yyyy-mm-dd HH24:MI:SS')".format(last_login = last_login)
+    querystring = "select count(ID) from offers where CREATION_DATE > TO_DATE('{last_login}','yyyy-mm-dd HH24:MI:SS')".format(last_login = last_login)
     cursor.execute(querystring)
     result = cursor.fetchone()
     if result==None:

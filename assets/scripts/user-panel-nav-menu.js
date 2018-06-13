@@ -121,6 +121,7 @@ function closeSnack() {
 
 function init()
 {
+    post({'email':currentUserEmail,'apiKey':currentUserApiKey}, 'cgi-bin/users.py', function(){});
     sidePanelHTML = document.getElementById("sidePanel").innerHTML;
     document.getElementById("sidePanel").innerHTML = "";
     bookEntryLayout = document.getElementById("main").innerHTML;
@@ -135,7 +136,8 @@ function init()
 
                var notificationsBar = document.getElementById("snackbar").innerHTML;
                document.getElementById("snackbar").innerHTML = "";
-               get({'email':currentUserEmail,'apiKey':currentUserApiKey}, 'cgi-bin/users.py', populate_notifications);
+               get({'apiKey':currentUserApiKey}, 'cgi-bin/notifications.py', populate_notifications);
+               put({'apiKey':currentUserApiKey},'cgi-bin/loginTracker.py',function(){})
                notificationsBar.className = "show";
            });
 
