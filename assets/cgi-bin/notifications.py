@@ -14,8 +14,8 @@ arguments = cgi.FieldStorage()
 jsonObj = json.loads(arguments['json'].value)
 
 apiKey = jsonObj['apiKey']
-email = jsonObj['email']
 
-if(DB.findUserByEmail(email)==None):
-    DB.addUser(email,apiKey)
-
+response = {}
+response['type'] = 'success'
+response['message'] = int(DB.getUserNotifications(apiKey))
+print(json.dumps(response))

@@ -100,6 +100,14 @@ def updateUserLocation(email,x,y):
     cursor.execute(querystring) 
     conn.commit()
 
+def updateUserLastLogin(apikey):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring = '''update users set last_login = sysdate where apikey = '{apikey}' '''.format(apikey = apikey)
+    cursor.execute(querystring)
+    conn.commit()
+
+
 def addUser(email,apiKey):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
@@ -191,6 +199,20 @@ def getUserIDByApiKey(key):
     conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
     cursor = conn.cursor()
     querystring="select ID from users where APIKEY='{key}'".format(key=key)
+    cursor.execute(querystring)
+    result = cursor.fetchone()
+    if result==None:
+        return None
+    return result[0]
+
+def getUserNotifications(apikey):
+    conn = cx_Oracle.connect('TW/TWBooX@localhost:1521',encoding = "UTF-8")
+    cursor = conn.cursor()
+    querystring="select LAST_LOGIN from users where APIKEY='{apikey}'".format(apikey = apikey)
+    cursor.execute(querystring)
+    last_login = cursor.fetchone()[0]
+
+    querystring = "select count(ID) from offers where CREATION_DATE > TO_DATE('{last_login}','yyyy-mm-dd HH24:MI:SS')".format(last_login = last_login)
     cursor.execute(querystring)
     result = cursor.fetchone()
     if result==None:
