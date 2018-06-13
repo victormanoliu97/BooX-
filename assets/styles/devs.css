@@ -1,0 +1,80 @@
+body
+{
+    background: white;
+    font-family: "Calibri", serif;
+}
+a
+{
+    transition-duration: 0.3s;
+    font-size: 2em;
+    color: rgba(43, 45, 66, 1);
+    text-decoration: none;
+}
+a:hover
+{
+    transition-duration: 0.3s;
+    font-size: 2.25em;
+    color: rgba(216, 0, 50, 1);
+}
+.half
+{
+    float: left;
+    width: 50%;
+    height: 45%;
+}
+.logo
+{
+    position: absolute;
+    left: 43.5%;
+    font-size: 5em;
+    color: rgba(216, 0, 50, 1);
+}
+.logo:hover
+{
+    transition-duration: 0.3s;
+    font-size: 6em;
+    left: 42.5%;
+}
+.icon
+{
+    transition-duration: 0.3s;
+    color: rgba(43, 45, 66, 1);
+    font-size: 5em
+}
+.icon:hover
+{
+    transition-duration: 0.3s;
+    font-size: 5.5em;
+    color: rgba(216, 0, 50, 1);
+}
+.portrait
+{
+    transition-duration: 0.3s;
+    background-color: black;
+    border-radius: 9999999px;
+    width: 22em;
+    height: 22em;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 1em;
+    background-size: contain;
+}
+.portrait:hover
+{
+    width: 25em;
+    height: 25em;
+    transition-duration: 0.3s;
+}
+.contact
+{
+    margin-left: 20%;
+}
+.manoliu
+{
+    background-image: url(https://scontent.fomr1-1.fna.fbcdn.net/v/t1.0-9/32294328_1402367043243381_7365736739316432896_n.jpg?_nc_cat=0&oh=ef2cc3b5240180d9eda29d5a1bbd5f30&oe=5B77A6AD)
+}
+.paius
+{
+    background-size: cover;
+    background-image: url(https://image.ibb.co/c8FzLJ/Untitled.png)
+}
