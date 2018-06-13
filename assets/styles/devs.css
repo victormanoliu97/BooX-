@@ -61,6 +61,7 @@ a:hover
 }
 .portrait:hover
 {
+    margin-left: 22.5%;
     width: 25em;
     height: 25em;
     transition-duration: 0.3s;
